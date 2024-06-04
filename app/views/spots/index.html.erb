@@ -1,2 +1,13 @@
+<% if current_page?(root_path) %>
+  <div class="modal fade swipe-container" id="homepage" tabindex="-1" aria-labelledby="homepageLabel" aria-hidden="true" data-controller="modal" data-action="scrollend->modal#close">
+    <div class="modal-content swipe-element" data-modal-target="video">
+      <h1 class="title">Waver</h1>
+      <%= video_tag "surf_home.mp4", alt: "Surf video", autoplay: true, loop: true, muted: true, class: "home-video" %>
+      <%= image_tag "arrow_icon.svg", class: "arrow-icon" %>
+    </div>
+    <div class="action" data-modal-target="empty"></div>
+  </div>
+<% end %>
+
 <h1>Spots#index</h1>
 <p>Find me in app/views/spots/index.html.erb</p>
