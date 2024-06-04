@@ -9,5 +9,10 @@
   </div>
 <% end %>
 
-<h1>Spots#index</h1>
-<p>Find me in app/views/spots/index.html.erb</p>
+<div class="container">
+  <div class="spot-cards">
+    <% @spots.each do |spot| %>
+      <%= render "cards", spot: %>
+    <% end %>
+  </div>
+</div>
