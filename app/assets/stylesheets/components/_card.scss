@@ -1,0 +1,48 @@
+.spot-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  text-decoration: none;
+}
+
+.card .image-container {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card .card-content {
+  padding: 16px;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card .card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card .card-location {
+  font-size: 14px;
+  color: #666;
+}
