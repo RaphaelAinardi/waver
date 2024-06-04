@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   def index
     @spots = Spot.all
-    @markers = @spots.geocoded.map do |spot|
+    @markers = @spots.map do |spot|
       {
         lat: spot.latitude,
         lng: spot.longitude,
@@ -11,5 +11,9 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @spot = Spot.new
+    @spots_location = @spots.map do |spot|
+
+    end
   end
 end

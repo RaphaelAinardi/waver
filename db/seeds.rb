@@ -14,6 +14,7 @@ User.create([
   { email: 'anna.retali@example.com', password: 'password123', first_name: 'Anna', last_name: 'Retali', birthdate: '1986-10-05', level: 1 }
 ])
 
+Spot.destroy_all
 
 spots = [
   {
@@ -152,8 +153,8 @@ spots = [
     name: "Carcans",
     description: "Carcans offers a quieter alternative with powerful waves and fewer crowds. It's an ideal spot for those seeking a more relaxed surfing experience.",
     location: "Carcans, Gironde",
-    longitude: -1.080030,
-    latitude: 45.039539,
+    longitude: -1.186893,
+    latitude: 45.082631,
     difficulty: 2,
     wave_type: "Beach break",
     crowd: "Low",
@@ -164,8 +165,8 @@ spots = [
     name: "Le Porge",
     description: "Le Porge is known for its pristine beaches and excellent surfing conditions. It's a great spot for all levels, offering a serene and natural setting.",
     location: "Le Porge, Gironde",
-    longitude: -1.137400,
-    latitude: 44.866400,
+    longitude: -1.212208,
+    latitude: 44.893304,
     difficulty: 2,
     wave_type: "Beach break",
     crowd: "Low",
@@ -223,4 +224,3 @@ spots.each do |spot|
   # Attach the image to the offer with the correct content type for JPEG
   new_spot.photos.attach(io: photo_file, filename: filename, content_type: "image/jpeg")
 end
-

@@ -18,13 +18,13 @@ export default class extends Controller {
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
 
-    const customMarker = document.createElement("div")
-    customMarker.innerHTML = marker.marker_html
 
-    }
+  }
 
-    #addMarkersToMap() {
-      this.markersValue.forEach((marker) => {
+  #addMarkersToMap() {
+    this.markersValue.forEach((marker) => {
+      const customMarker = document.createElement("div")
+      customMarker.innerHTML = marker.marker_html
         new mapboxgl.Marker(customMarker)
           .setLngLat([ marker.lng, marker.lat ])
           .addTo(this.map)
@@ -35,7 +35,7 @@ export default class extends Controller {
       const bounds = new mapboxgl.LngLatBounds()
       this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
       this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
-      this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl }))
+      // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      //   mapboxgl: mapboxgl }))
     }
   }
