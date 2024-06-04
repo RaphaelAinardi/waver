@@ -1,24 +1,20 @@
-<div class="spot-card">
-    <% @spots.each do |spot| %>
-        <%= link_to spot_path(spot), class:"text-decoration-none text-dark " do %>
-          <div class="card">
-            <div class="image-container">
-              <% if spot.photos.attached? %>
-                <%= image_tag url_for(spot.photos.first) %>
-              <% else %>
-                <img src="default_image_url" class=" " alt="Default Image">
-              <% end %>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title"><%= spot.name %></h3>
-              <p class="card-location"><%= spot.location %></p>
-              <% if spot.reviews.count > 0 %>
-              <div>
-                <i class="fa-solid fa-star"></i> <%= spot.reviews.average(:rating) %>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+<%= link_to spot_path(spot), class:"text-decoration-none text-dark " do %>
+  <div class="card">
+    <div class="image-container">
+      <% if spot.photos.attached? %>
+        <%= cl_image_tag spot.photos.first.key %>
+      <% else %>
+        <%= image_tag "default_photo.png", alt="Default Image" %>
       <% end %>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title"><%= spot.name %></h3>
+      <p class="card-location"><%= spot.location %></p>
+      <% if spot.reviews.count > 0 %>
+      <div>
+        <i class="fa-solid fa-star"></i> <%= spot.reviews.average(:rating) %>
+      </div>
+      <% end %>
+    </div>
   </div>
+<% end %>

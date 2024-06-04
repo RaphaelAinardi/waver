@@ -1,0 +1,36 @@
+.swipe-container {
+  overflow: auto;
+  overflow-y: scroll;
+
+  .action,
+  .swipe-element {
+    min-height: 100%;
+    background-color: transparent;
+    border: none;
+
+    .home-video {
+      height: 100vh;
+      object-fit: cover;
+      overflow: hidden;
+    }
+
+    .title {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      color: white;
+    }
+
+    .arrow-icon {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.swipe-container::-webkit-scrollbar {
+  display: none;
+}
