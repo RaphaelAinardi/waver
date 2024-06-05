@@ -6,5 +6,7 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @spot = Spot.find(params[:id])
+    @weather_data = GetWeather.new(spot: @spot).call
   end
 end
