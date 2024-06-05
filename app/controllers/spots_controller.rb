@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     @spots = Spot.all
     @markers = @spots.map do |spot|
@@ -11,9 +13,5 @@ class SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.new
-    @spots_location = @spots.map do |spot|
-
-    end
   end
 end
