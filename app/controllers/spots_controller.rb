@@ -7,7 +7,7 @@ class SpotsController < ApplicationController
       {
         lat: spot.latitude,
         lng: spot.longitude,
-        marker_html: render_to_string(partial: "marker")
+        marker_html: render_to_string(partial: "marker", locals: { spot: })
       }
     end
   end
