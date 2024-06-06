@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "spots#index"
   get "/dashboard", to: "pages#dashboard", as: :dashboard
   get "/feed", to: "pages#feed", as: :feed
+  get "/map", to: "spots#map", as: :map
 
   resources :spots, only: %i[index show] do
     resources :experiences, only: %i[create update] do
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[create update]
   end
 
-  resources :chats, only: %i[show create] do
+  resources :chats, only: %i[index show create] do
     resources :messages, only: %i[create]
   end
 

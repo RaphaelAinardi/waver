@@ -1,7 +1,12 @@
-<h1>Spots#show</h1>
-<p>Find me in app/views/spots/show.html.erb</p>
-
-<% @weather_data.each do |key, data| %>
-  <h2><%= key.gsub('_', ' ').capitalize %></h2>
-  <%= data %>
+<% content_for(:page) do %>
+  Spot
 <% end %>
+
+<div class="container">
+  <h1>Spots#show</h1>
+  <p>Find me in app/views/spots/show.html.erb</p>
+  <% @weather_data.each do |key, data| %>
+    <h2><%= key.gsub('_', ' ').capitalize %></h2>
+    <%= data %>
+  <% end %>
+</div>
