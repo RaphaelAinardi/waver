@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_100207) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_121643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,17 +124,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_100207) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "livecam_url"
-    t.integer "airTemperature"
-    t.float "cloudCover"
-    t.string "currentDirection"
-    t.float "currentSpeed"
-    t.string "seaLevel"
-    t.integer "swellDirection"
-    t.integer "swellPeriod"
-    t.string "waveHeight"
-    t.integer "windDirection"
-    t.string "windSpeed"
-    t.integer "waterTemperature"
   end
 
   create_table "users", force: :cascade do |t|
