@@ -13,6 +13,10 @@
 <% end %>
 
 <div class="container">
+  <div class="filters">
+    <%= render "filters" %>
+  </div>
+
   <div class="spot-cards">
     <% @spots.each do |spot| %>
       <%= render "cards", spot: %>
