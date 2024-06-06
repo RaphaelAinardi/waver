@@ -17,5 +17,8 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @spot = Spot.find(params[:id])
+    @hours = (0..24).to_a.map { |n| (n + Time.now.hour) % 24 }
+    @weather_data = GetWeather.new(spot: @spot).call
   end
 end
