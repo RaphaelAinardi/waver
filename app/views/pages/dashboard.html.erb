@@ -1,0 +1,46 @@
+<% content_for(:page) do %>
+  Dashboard
+<% end %>
+<div class="container">
+  <div class="profile-page">
+    <div class="profile-infos">
+      <div>
+        <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
+      </div>
+      <div class="profile-details">
+        <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
+        <div>
+          <div class="opacity-75"><%= current_user.birthdate.strftime("%m %B %Y") %></div>
+          <div class="opacity-75"><%= current_user.email %></div>
+        </div>
+        <div class="button profile-edit">Edit</div>
+      </div>
+    </div>
+    <% unless current_user.favourites.count === 0 %>
+      <div id="favouritesControls" class="favourites carousel slide">
+        <div class="carousel-inner">
+          <% current_user.favourites.each_with_index do |fav, index| %>
+            <div class="carousel-item <%= "active" if index === 0 %>">
+              <%= render "spots/cards", spot: fav.spot %>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#favouritesControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#favouritesControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <% end %>
+    <% unless current_user.experiences.count === 0 %>
+      <div class="experiences">
+        <% current_user.experiences.each do |experience| %>
+          <%= render "shared/experience", experience: %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
