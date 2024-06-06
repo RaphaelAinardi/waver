@@ -5,7 +5,8 @@
 }
 
 .card {
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  color: $main-text;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -14,6 +15,7 @@
   width: 100%;
   height: auto;
   text-decoration: none;
+  border: none;
 
   .image-container {
     width: 100%;
@@ -37,12 +39,10 @@
     .card-title {
       font-size: 18px;
       font-weight: bold;
-      color: #333;
     }
 
     .card-location {
       font-size: 14px;
-      color: #666;
     }
   }
 }
