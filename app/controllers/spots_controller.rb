@@ -3,6 +3,10 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.all
+  end
+
+  def map
+    @spots = Spot.all
     @markers = @spots.map do |spot|
       {
         lat: spot.latitude,
