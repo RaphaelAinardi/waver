@@ -14,12 +14,12 @@
       overflow: hidden;
     }
 
-    .title {
+    .logo {
       position: absolute;
-      top: 0;
+      top: 20px;
       left: 50%;
       transform: translate(-50%, 0);
-      color: white;
+      width: 100px;
     }
 
     .arrow-icon {
