@@ -1,13 +1,63 @@
 <% content_for(:page) do %>
-  Spot
+  <h2><%= @spot.name %></h2>
 <% end %>
 
-<div class="container">
-  <h1>Spots#show</h1>
-  <p>Find me in app/views/spots/show.html.erb</p>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title"><%= @spot.name %></h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="image-container">
+            <% if @spot.photos.attached? %>
+              <div class="spot-photos-container <%= @spot.photos.count < 3 ? 'single-photo' : 'multiple-photos' %>">
+                <% @spot.photos.limit(3).each_with_index do |photo, index| %>
+                  <div class="spot-photo <%= index == 0 ? "main" : "" %>">
+                    <%= cl_image_tag(photo.key, crop: :fill, class: 'img-fluid') %>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <div class='spot-photos-container single-photo'>
+                <%= cl_image_tag("default_photo", crop: :fill, class: 'img-fluid') %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="details">
+            <div class="description mt-3 mb-3">
+              <strong>Description:</strong> <%= @spot.description %>
+            </div>
+            <div class="difficulty mt-3 mb-3">
+              <strong>Difficulty:</strong> <%= @spot.difficulty %>
+            </div>
+            <div class="wave-type mt-3">
+              <strong>Wave type:</strong> <%= @spot.wave_type %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
   <% @weather_data.each do |key, data| %>
-    <h2><%= key.gsub('_', ' ').capitalize %></h2>
-    <% data.each_with_index do |value, index| %>
-    <% end %>
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= key.to_s.gsub('_', ' ').capitalize %></h5>
+        <div class="d-flex flex-nowrap overflow-auto gap-3">
+          <% data.each_with_index do |value, index| %>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-center flex-column align-items-center">
+                <span><%= @hours[index] %>h</span>
+                <span><%= value %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
