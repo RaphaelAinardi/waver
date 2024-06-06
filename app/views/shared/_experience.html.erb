@@ -1,0 +1,26 @@
+<div class="experience-card">
+  <div class="experience-header">
+    <div>
+      <%= image_tag "default_pfp.jpg", class: "avatar-bordered", crop: :fill %>
+    </div>
+    <div class="profile-details">
+      <div class="card-user-name"><%= experience.user.first_name %> <%= experience.user.last_name %></div>
+      <div><%= experience.spot.location %></div>
+    </div>
+  </div>
+  <div class="image-container">
+    <% if experience.photos.attached? %>
+      <%= cl_image_tag experience.photos.first.key %>
+    <% else %>
+      <%= image_tag "default_photo.png", alt:"Default Image" %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="experience-actions">
+      <i class="fa-regular fa-heart"></i>
+      <i class="fa-solid fa-comment"></i>
+    </div>
+    <i>"<%= experience.content %>"</i>
+    <div class="opacity-75"><%= time_ago_in_words(experience.created_at).capitalize %> ago</div>
+  </div>
+</div>
