@@ -1,0 +1,13 @@
+<div class="navbar header sticky-top">
+  <div class="header-item">
+    <%= image_tag "menu.svg", class: "arrow-icon" %>
+  </div>
+  <% if content_for?(:page) %>
+    <div class="header-item title">
+      <%= yield :page %>
+    </div>
+  <% end %>
+  <%= link_to chats_path, class: "header-item #{"active" if current_page?(chats_path)}" do %>
+    <i class="fa-solid fa-comment"></i>
+  <% end %>
+</div>

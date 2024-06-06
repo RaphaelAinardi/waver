@@ -1,24 +1,33 @@
-.navigation {
+.header {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   width: 100%;
-  border-top: solid 1px rgba(0, 0, 0, 0.5);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
   background-color: $white;
 
-  .navbar-item {
+  .header-item {
     color: $main-text;
     text-decoration: none;
     text-align: center;
-    padding-bottom: 16px;
-    font-size: 16px;
+    padding-top: 16px;
+    font-size: 20px;
 
     &.active {
       color: $accent;
     }
 
+    &.title {
+      grid-column: span 3;
+    }
+
     i {
-      font-size: 24px;
+      font-size: 28px;
+    }
+
+    img {
+      height: 32px;
+      width: 32px;
     }
   }
 }
