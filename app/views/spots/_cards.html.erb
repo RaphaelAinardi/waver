@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <h3 class="card-title"><%= spot.name %></h3>
-      <p class="card-location"><%= spot.location %></p>
+      <div class="card-location opacity-75"><%= spot.location %></div>
       <% if spot.reviews.count > 0 %>
       <div>
         <i class="fa-solid fa-star"></i> <%= spot.reviews.average(:rating) %>
