@@ -3,6 +3,10 @@ class SpotsController < ApplicationController
 
   def index
     @spots = Spot.all
+    @spots = @spots.where(location: params[:location]) if params[:location].present?
+    @spots = @spots.where(wave_type: params[:wave_type]) if params[:wave_type].present?
+    @spots = @spots.where(difficulty: params[:difficulty]) if params[:difficulty].present?
+    @spots = @spots.order(average_rating: :desc) if params[:average_rating].present?
   end
 
   def map
@@ -11,7 +15,9 @@ class SpotsController < ApplicationController
       {
         lat: spot.latitude,
         lng: spot.longitude,
-        marker_html: render_to_string(partial: "marker", locals: { spot: })
+        marker_html: render_to_string(partial: "marker", locals: { spot: }),
+        info_window_html: render_to_string(partial: "info_window", locals: {spot:})
+
       }
     end
   end

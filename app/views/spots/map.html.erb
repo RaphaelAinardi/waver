@@ -1,3 +1,6 @@
+<% content_for(:page) do %>
+  Map
+<% end %>
 <div class="map"
      data-controller="map"
      data-map-markers-value="<%= @markers.to_json %>"
