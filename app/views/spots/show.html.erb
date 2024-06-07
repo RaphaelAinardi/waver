@@ -58,15 +58,15 @@
                   <% elsif key === 'swell_period' %>
                     <%= value.round %>s
                   <% elsif key === 'swell_direction' %>
-                    <%= image_tag "north-arrow", style: "transform: rotate(#{value}deg); width: 18px" %>
+                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
                   <% elsif key === 'wave_height' %>
                     <%= value %>m
                   <% elsif key === 'sea_level' %>
                     <%= (value * -100).round %>%
                   <% elsif key === 'current_direction' %>
-                    <%= image_tag "north-arrow", style: "transform: rotate(#{value}deg); width: 18px" %>
+                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
                   <% elsif key === 'wind_direction' %>
-                    <%= image_tag "north-arrow", style: "transform: rotate(#{value}deg); width: 18px" %>
+                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
                   <% elsif key === 'water_temperature' %>
                     <%= value.round %>°C
                   <% else %>
