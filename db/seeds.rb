@@ -27,7 +27,7 @@ spots = [
     wave_type: "Beach break",
     crowd: "High",
     average_rating: 4.5,
-    photo_url: "https://www.tourisme64.com/wp-content/uploads/2023/12/Biarritz-Grande-plage-et-phare.jpg"
+    photo_url: "https://cdt64.media.tourinsoft.eu/upload/Cote-des-Basques-Biarritz-Ocean--4-.jpg?width=1800"
   },
   {
     name: "Plage du Club",
@@ -39,7 +39,7 @@ spots = [
     wave_type: "Beach break",
     crowd: "High",
     average_rating: 4.7,
-    photo_url: "https://www.tourisme64.com/wp-content/uploads/2023/12/Biarritz-Grande-plage-et-phare.jpg"
+    photo_url: "https://cdt64.media.tourinsoft.eu/upload/Plage-du-Club---Anglet--RiBLANC.jpg"
   },
   {
     name: "Hendaye",
