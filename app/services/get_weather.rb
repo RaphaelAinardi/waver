@@ -27,7 +27,7 @@ class GetWeather
       lng: @spot.longitude,
       # start: Time.now.beginning_of_day.iso8601,
       end: (Time.now.beginning_of_hour + 1.day - 1.hour).iso8601, #Date.today.to_time.end_of_day.iso8601,
-      params: "cloudCover,currentDirection,currentSpeed,seaLevel,swellDirection,swellPeriod,waveHeight,windDirection,windSpeed,waterTemperature",
+      params: "swellPeriod,swellDirection,waveHeight,seaLevel,currentDirection,currentSpeed,windDirection,windSpeed,waterTemperature,cloudCover",
     }
   end
 
@@ -46,7 +46,7 @@ class GetWeather
   end
 
   def final_results
-    ["cloudCover", "currentDirection", "currentSpeed", "seaLevel", "swellDirection", "swellPeriod", "waterTemperature", "waveHeight", "windDirection", "windSpeed"].map do |key|
+    ["swellPeriod", "swellDirection", "waveHeight", "currentDirection", "windDirection", "waterTemperature", "cloudCover", "seaLevel"].map do |key|
       [key.underscore, gather_data(key)]
     end.to_h
   end
