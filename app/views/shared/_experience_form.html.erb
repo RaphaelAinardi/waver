@@ -1,0 +1,11 @@
+<div class="modal fade swipe-form" tabindex="-1" data-action="scrollend->experience#close" data-experience-target="modal">
+  <div class="action" data-experience-target="empty"></div>
+  <div class="modal-content swipe-element" data-experience-target="form">
+    <%= image_tag "arrow_icon_dark.svg", class: "arrow-icon" %>
+    <%= simple_form_for [spot, Experience.new], html: { class: "form" } do |f| %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true }, label: false %>
+      <%= f.input :content, placeholder: "Add a description ...", label: false %>
+      <%= f.button :submit, 'Post your experience', class:'button w-100' %>
+    <% end %>
+  </div>
+</div>

@@ -17,6 +17,10 @@
       color: $accent;
     }
 
+    &.disabled {
+      color: lightgrey;
+    }
+
     i {
       font-size: 24px;
     }

@@ -1,0 +1,23 @@
+.swipe-form {
+  overflow: auto;
+  overflow-y: scroll;
+
+  .action {
+    min-height: 100vh;
+    background-color: transparent;
+  }
+
+  .swipe-element {
+    height: fit-content;
+    background-color: $white;
+    border: none;
+
+    .arrow-icon {
+      height: 60px;
+    }
+
+    .form {
+      padding: 0 12px 12px 12px;
+    }
+  }
+}
