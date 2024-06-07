@@ -5,7 +5,12 @@
   <div class="profile-page">
     <div class="profile-infos">
       <div>
-        <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
+        <% else %>
+          <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
+        <% end %>
+
       </div>
       <div class="profile-details">
         <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
