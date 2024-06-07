@@ -3,10 +3,6 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["modal", "form", "empty"];
 
-  connect() {
-    console.log("Pouet");
-  }
-
   toggle() {
     this.modalTarget.classList.add("show");
     this.modalTarget.classList.add("d-block");
