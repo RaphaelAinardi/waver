@@ -11,10 +11,32 @@ export default class extends Controller {
     });
   }
 
-  close() {
+  handleScroll() {
+    // Set isScrolling to true on scroll
+    this.isScrolling = true;
+  }
+
+  handleTouchEnd() {
+    // User has removed their finger from the screen
+    this.checkScrollEnd();
+  }
+
+  checkScrollEnd() {
+    // Clear any previous timeout
+    clearTimeout(this.scrollTimeout);
+
+    // Set a timeout to check if the scroll has stopped after a short delay
+    this.scrollTimeout = setTimeout(() => {
+      if (this.isScrolling) {
+        this.isScrolling = false;
+        this.onScrollEnd();
+      }
+    }, 100); // Adjust the delay as needed
+  }
+
+  onScrollEnd() {
     const minDistance = 150;
     const container = this.modalTarget;
-    console.log(container.scrollTop);
     if (container.scrollTop < minDistance) {
       this.emptyTarget.scrollIntoView({
         behavior: "smooth",
