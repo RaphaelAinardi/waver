@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "/map", to: "spots#map", as: :map
 
   resources :spots, only: %i[index show] do
+    member do
+      get :set_favourite
+    end
     resources :experiences, only: %i[create update] do
       resources :comments, only: %i[create update]
     end

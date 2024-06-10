@@ -6,11 +6,12 @@ class User < ApplicationRecord
 
   has_many :chats
   has_many :comments
-  has_many :experiences
-  has_many :favourites
-  has_many :follows, foreign_key: :first_user_id
+  has_many :experiences, dependent: :destroy
+  has_many :follows, foreign_key: :first_user_id, dependent: :destroy
   has_many :messages
   has_many :reviews
+  has_many :favourites, dependent: :destroy
+  has_many :favourite_spots, through: :favourites, source: :spot
 
   has_one_attached :photo
 end

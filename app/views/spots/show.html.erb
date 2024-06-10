@@ -29,3 +29,9 @@
   <i class="fa-solid fa-plus"></i>
 </div>
 <%= render "shared/experience_form", spot: @spot %>
+
+<div class="button round direction-button">
+  <a href="https://www.google.com/maps/search/?api=1&query=<%= @spot.latitude %>,<%= @spot.longitude %>" target="_blank" class="text-decoration-none text-white">
+    <i class="fa-solid fa-diamond-turn-right"></i>
+  </a>
+</div>
