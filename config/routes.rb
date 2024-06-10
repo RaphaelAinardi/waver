@@ -17,10 +17,15 @@ Rails.application.routes.draw do
     resources :messages, only: %i[create]
   end
 
-  resources :follows, only: %i[create destroy]
+  resources :users, only: %i[show] do
+    member do
+      post :set_follow
+    end
+  end
 
   resources :comments, only: %i[destroy]
   resources :experiences, only: %i[destroy]
   resources :favourites, only: %i[destroy]
   resources :reviews, only: %i[destroy]
+  resources :follows, only: %i[destroy]
 end

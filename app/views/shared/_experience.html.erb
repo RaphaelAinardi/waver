@@ -1,5 +1,5 @@
 <div class="experience-card">
-  <div class="experience-header">
+  <%= link_to (experience.user === current_user ? dashboard_path : user_path(experience.user)), class: "text-decoration-none text-primary experience-header" do %>
     <div>
       <%= image_tag "default_pfp.jpg", class: "avatar-bordered", crop: :fill %>
     </div>
@@ -7,7 +7,18 @@
       <div class="card-user-name"><%= experience.user.first_name %> <%= experience.user.last_name %></div>
       <div><%= experience.spot.location %></div>
     </div>
-  </div>
+    <% unless (params[:action] === 'show' && params[:controller] === 'users') || current_page?(dashboard_path) || experience.user === current_user %>
+      <object>
+        <%= link_to set_follow_user_path(experience.user), data: {turbo_method: :post, controller:"follow", action: "click->follow#quickToggle"}, class:"follow" do %>
+          <% if current_user.follows.find_by( second_user: experience.user ) %>
+            <i class="fa-solid fa-user-minus"></i>
+          <% else %>
+            <i class="fa-solid fa-user-plus"></i>
+          <% end %>
+        <% end %>
+      </object>
+    <% end %>
+  <% end %>
   <div class="image-container">
     <% if experience.photos.attached? %>
       <%= cl_image_tag experience.photos.first.key %>

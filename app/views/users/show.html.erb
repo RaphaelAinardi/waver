@@ -1,0 +1,55 @@
+<% content_for(:page) do %>
+  User profile
+<% end %>
+<div class="container">
+  <div class="profile-page">
+    <div class="profile-infos">
+      <div>
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-profile", crop: :fill %>
+        <% else %>
+          <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
+        <% end %>
+      </div>
+      <div class="profile-details">
+        <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+        <div data-controller="follow">
+          <div class="opacity-75"><%= @user.birthdate.strftime("%m %B %Y") %></div>
+          <%= link_to set_follow_user_path(@user), data: {turbo_method: :post, action: "click->follow#toggle"}, class:"button" do %>
+            <% if current_user.follows.find_by( second_user: @user ) %>
+              <i class="fa-solid fa-user-minus"></i> Unfollow
+            <% else %>
+              <i class="fa-solid fa-user-plus"></i> Follow
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% unless @user.favourites.count === 0 %>
+      <div id="favouritesControls" class="favourites carousel slide">
+        <div class="carousel-inner">
+          <% @user.favourites.each_with_index do |fav, index| %>
+            <div class="carousel-item <%= "active" if index === 0 %>">
+              <%= render "spots/cards", spot: fav.spot %>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#favouritesControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#favouritesControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <% end %>
+    <% unless @user.experiences.count === 0 %>
+      <div class="experiences">
+        <% @user.experiences.each do |experience| %>
+          <%= render "shared/experience", experience: %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

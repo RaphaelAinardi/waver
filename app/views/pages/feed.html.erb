@@ -2,6 +2,11 @@
   Feed
 <% end %>
 <div class="container">
-  <h1>Pages#feed</h1>
-  <p>Find me in app/views/pages/feed.html.erb</p>
+  <div class="experiences">
+    <% current_user.follows.each do |follow| %>
+      <% follow.second_user.experiences.each do |experience| %>
+        <%= render "shared/experience", experience: %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
