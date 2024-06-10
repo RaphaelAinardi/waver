@@ -35,6 +35,5 @@ class SpotsController < ApplicationController
     else
       Favourite.create(user: current_user, spot: @spot)
     end
-    render json: { favourite_count: current_user.favourite_spots.count }
   end
 end
