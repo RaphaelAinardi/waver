@@ -1,0 +1,110 @@
+.container.chat {
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 50px;
+}
+
+.chat-title {
+  padding: 12px;
+}
+
+.messages {
+  flex-grow: 1;
+  padding: 12px;
+  height: 300px;
+  overflow-y: auto;
+  color: black;
+}
+
+.message-sent {
+  background-color: #d1f7c4; /* Couleur de fond pour les messages envoyés */
+  text-align: right;
+  margin-left: auto;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  max-width: 75%;
+}
+
+
+.message-received {
+  background-color: #f1f1f1; /* Couleur de fond pour les messages reçus */
+  text-align: left;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  max-width: 75%;
+}
+
+
+.wrapper_btn-chat {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px !important;
+  padding: 15px 20px;
+  width: 95%;
+  margin-bottom: 15px;
+}
+
+#new_message {
+  background-color: $background;
+  position: sticky;
+  bottom: 83px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message_content {
+  background-color: transparent;
+  padding: 0px;
+  border: none !important;
+}
+
+#message_content {
+  border: none !important;
+  background-color: transparent;
+  padding: 0px;
+  outline: none !important;
+}
+
+#message_content:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.chat-form {
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 20px; /* Ajoute un espace entre les messages et le formulaire */
+}
+
+.form-control {
+  border-radius: 20px; /* Rend l'input de texte arrondi */
+}
+
+.mb-3 {
+  margin-bottom: 0rem !important;
+}
+
+.form-control:focus {
+  outline: none !important;
+}
+
+.btn_input_chat {
+  flex-shrink: 0;
+  height: 50px;
+  color: white;
+  width: 50px;
+  border-radius: 50% !important;
+  background-color: $main-text;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+}
