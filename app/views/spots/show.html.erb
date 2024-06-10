@@ -2,7 +2,7 @@
   <h2><%= @spot.name %></h2>
 <% end %>
 
-<div class="container mt-5">
+<div class="container">
   <div class="card">
     <div class="card-body">
       <h2 class="card-title"><%= @spot.name %></h2>
@@ -40,9 +40,6 @@
       </div>
     </div>
   </div>
-</div>
-
-  <div class="container">
   <% @weather_data.each do |key, data| %>
     <div class="card mt-3">
       <div class="card-body">
@@ -63,10 +60,12 @@
                     <%= value %>m
                   <% elsif key === 'sea_level' %>
                     <%= (value * -100).round %>%
-                  <% elsif key === 'current_direction' %>
-                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
-                  <% elsif key === 'wind_direction' %>
-                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
+                  <% elsif key === 'current' %>
+                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value[0]}deg); width: 18px" %>
+                    <%= value[1] %>
+                  <% elsif key === 'wind' %>
+                    <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value[0]}deg); width: 18px" %>
+                    <%= value[1] %>
                   <% elsif key === 'water_temperature' %>
                     <%= value.round %>°C
                   <% else %>
@@ -82,4 +81,7 @@
   <% end %>
 </div>
 
+<div class="button round experience-button" data-action="click->experience#toggle">
+  <i class="fa-solid fa-plus"></i>
+</div>
 <%= render "shared/experience_form", spot: @spot %>

@@ -6,10 +6,12 @@
 <% end %>
 
 <div class="container">
-  <div class="filters">
-    <%= render "filters" %>
-  </div>
-
+  <%= render "filters" %>
+  <% if @spots.empty? %>
+    <div class="alert alert-warning mt-3">
+      No spots found matching your filters.
+    </div>
+  <% end %>
   <div class="spot-cards">
     <% @spots.each do |spot| %>
       <%= render "cards", spot: %>

@@ -6,8 +6,5 @@
     <div class="header-item title">
       <strong><%= yield :page %></strong>
     </div>
-  <% end %>
-  <%= link_to chats_path, class: "header-item #{"active" if current_page?(chats_path)}" do %>
-    <i class="fa-solid fa-comment"></i>
-  <% end %>
+<% end %>
 </div>

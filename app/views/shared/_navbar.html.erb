@@ -7,13 +7,13 @@
     <i class="fa-solid fa-map"></i>
     <div>Map</div>
   <% end %>
-  <div class="navbar-item <%= "pe-none disabled" unless params[:action] == 'show' && params[:controller] == 'spots' %>" data-action="click->experience#toggle">
-    <i class="fa-solid fa-pen-to-square"></i>
-    <div>Post</div>
-  </div>
   <%= link_to feed_path, class: "navbar-item #{"active" if current_page?(feed_path)}" do %>
     <i class="fa-solid fa-chart-line"></i>
     <div>Feed</div>
+  <% end %>
+  <%= link_to chats_path, class: "navbar-item #{"active" if current_page?(chats_path)}" do %>
+    <i class="fa-solid fa-comment"></i>
+    <div>Chat</div>
   <% end %>
   <%= link_to dashboard_path, class: "navbar-item #{"active" if current_page?(dashboard_path)}" do %>
     <i class="fa-solid fa-user"></i>

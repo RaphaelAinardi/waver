@@ -46,8 +46,14 @@ class GetWeather
   end
 
   def final_results
-    ["swellPeriod", "swellDirection", "waveHeight", "currentDirection", "windDirection", "waterTemperature", "cloudCover", "seaLevel"].map do |key|
-      [key.underscore, gather_data(key)]
+    ["swellPeriod", "swellDirection", "waveHeight", "current", "wind", "waterTemperature", "cloudCover", "seaLevel"].map do |key|
+      if key == "current"
+        ["current", gather_data("currentDirection").map.with_index { |value, index| [value, gather_data("currentSpeed")[index]] }]
+      elsif key == "wind"
+        ["wind", gather_data("windDirection").map.with_index { |value, index| [value, gather_data("windSpeed")[index]] }]
+      else
+        [key.underscore, gather_data(key)]
+      end
     end.to_h
   end
 end
