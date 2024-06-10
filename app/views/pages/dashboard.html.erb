@@ -18,8 +18,9 @@
           <div class="opacity-75"><%= current_user.birthdate.strftime("%m %B %Y") %></div>
           <div class="opacity-75"><%= current_user.email %></div>
         </div>
-        <div class="button profile-edit">Edit</div>
-        <%= link_to "déco", destroy_user_session_path, data: { turbo_method: :delete }%>
+        <div class="button profile-edit">
+          <%= link_to "Edit", edit_user_registration_path(current_user)%>
+        </div>
       </div>
     </div>
     <% unless current_user.favourites.count === 0 %>
