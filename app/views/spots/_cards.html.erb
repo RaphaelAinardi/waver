@@ -1,7 +1,9 @@
-<%= link_to spot_path(spot), class: "text-decoration-none text-dark" do %>
-  <div class="card">
+<%= link_to spot_path(spot), class:"text-decoration-none text-dark " do %>
+  <div class="spot-card" data-controller="favourite">
     <div class="image-container">
       <% if spot.photos.attached? %>
+        <% favourite = current_user.favourites.find_by(spot: spot) %>
+        <i class="like <%= favourite.nil? ? 'fa-regular' : 'fa-solid' %> fa-heart" data-action="click->favourite#setFavourite" data-favourite-id-value="<%= spot.id %>"></i>
         <%= cl_image_tag spot.photos.first.key %>
       <% else %>
         <%= image_tag "default_photo.png", alt: "Default Image" %>

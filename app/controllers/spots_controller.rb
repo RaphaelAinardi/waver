@@ -27,4 +27,13 @@ class SpotsController < ApplicationController
     @hours = (0..24).to_a.map { |n| (n + Time.now.hour) % 24 }
     @weather_data = GetWeather.new(spot: @spot).call
   end
+
+  def set_favourite
+    @spot = Spot.find(params[:id])
+    if current_user.favourite_spots.include?(@spot)
+      current_user.favourite_spots.delete(@spot)
+    else
+      Favourite.create(user: current_user, spot: @spot)
+    end
+  end
 end
