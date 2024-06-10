@@ -4,7 +4,7 @@
   gap: 10px;
 }
 
-.card {
+.spot-card {
   background-color: #ffffff;
   color: $main-text;
   border-radius: 8px;
@@ -16,6 +16,17 @@
   height: auto;
   text-decoration: none;
   border: none;
+
+  .like {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    color: $accent;
+  }
 
   .image-container {
     width: 100%;
