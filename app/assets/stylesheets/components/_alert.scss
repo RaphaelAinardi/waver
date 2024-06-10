@@ -1,7 +1,7 @@
-.alert-container {
+.alert {
   position: fixed;
   bottom: 100px;
+  margin: 0 8px;
+  width: calc(100% - 16px);
   z-index: 1000;
-  width: 100%;
-  right: auto;
 }
