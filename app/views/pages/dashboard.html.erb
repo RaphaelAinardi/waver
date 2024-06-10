@@ -16,6 +16,8 @@
         <div class="button profile-edit">Edit</div>
       </div>
     </div>
+    <div class="profile-infos">
+    <h4>Favorites</h4>
     <% unless current_user.favourites.count === 0 %>
       <div id="favouritesControls" class="favourites carousel slide">
         <div class="carousel-inner">
@@ -35,6 +37,9 @@
         </button>
       </div>
     <% end %>
+    </div>
+    <div class="profile-infos">
+    <h4>Experiences</h4>
     <% unless current_user.experiences.count === 0 %>
       <div class="experiences">
         <% current_user.experiences.each do |experience| %>
@@ -42,5 +47,6 @@
         <% end %>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
