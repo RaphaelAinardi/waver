@@ -17,6 +17,11 @@
   text-decoration: none;
   border: none;
 
+  .direction {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
   .like {
     position: absolute;
     top: 8px;

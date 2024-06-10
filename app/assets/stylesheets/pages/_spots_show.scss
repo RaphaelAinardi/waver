@@ -5,6 +5,13 @@
 .experience-button {
   position: fixed;
   bottom: 100px;
-  left: 50%;
+  left: 90%;
+  transform: translate(-50%, 0);
+}
+
+.direction-button {
+  position: fixed;
+  bottom: 100px;
+  left: 10%;
   transform: translate(-50%, 0);
 }

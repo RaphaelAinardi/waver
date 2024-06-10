@@ -6,8 +6,13 @@
         <i class="like <%= favourite.nil? ? 'fa-regular' : 'fa-solid' %> fa-heart" data-action="click->favourite#setFavourite" data-favourite-id-value="<%= spot.id %>"></i>
         <%= cl_image_tag spot.photos.first.key %>
       <% else %>
-        <%= image_tag "default_photo.png", alt="Default Image" %>
+        <%= image_tag "default_photo.png", alt: "Default Image" %>
       <% end %>
+    </div>
+    <div class="mt-2">
+      <a href="https://www.google.com/maps/search/?api=1&query=<%= spot.latitude %>,<%= spot.longitude %>" target="_blank" class="direction">
+        <i class="fa-solid fa-diamond-turn-right"></i>
+      </a>
     </div>
     <div class="card-body">
       <h3 class="card-title"><%= spot.name %></h3>
