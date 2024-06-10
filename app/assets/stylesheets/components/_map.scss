@@ -1,6 +1,6 @@
 .map {
-  width: 100%;
-  height: calc(100vh - 100px);
+  flex: 1;
+  outline: none !important;
 
   .mapboxgl-ctrl-bottom-right,
   .mapboxgl-ctrl-bottom-left {
@@ -8,17 +8,7 @@
   }
 }
 
-
-.mapboxgl-popup {
-  max-width: 200px;
-}
-
 .mapboxgl-popup-content {
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   padding: 0;
-  pointer-events: auto;
-  position: relative;
 }
