@@ -10,7 +10,7 @@
       <%= select_tag :location, options_for_select(Spot.all.sort_by(&:location).pluck(:location).uniq, params[:location]), class:"form-select", include_blank: "Location" %>
       <%= select_tag :wave_type, options_for_select(Spot.all.sort_by(&:wave_type).pluck(:wave_type).uniq, params[:wave_type]), class:"form-select", include_blank: "Wave type" %>
       <%= select_tag :difficulty, options_for_select(Spot.all.sort_by(&:difficulty).pluck(:difficulty).uniq, params[:difficulty]), class:"form-select", include_blank: "Difficulty"%>
-      <div class="sort_by d-flex justify-content-center ">
+      <div class="sort_by d-flex gap-3 justify-content-center ">
         <%= check_box_tag :average_rating, 'average', label: "average", placeholder: "average" %>
         <%= label_tag :average_rating, "Sort by average rating" %>
       </div>
