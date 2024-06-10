@@ -1,7 +1,6 @@
 class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
-
   def index
     @spots = Spot.all
     @spots = @spots.where(location: params[:location]) if params[:location].present?
@@ -10,11 +9,10 @@ class SpotsController < ApplicationController
     @spots = @spots.order(average_rating: :desc) if params[:average_rating].present?
     if @spots.empty?
       @spots = Spot.all
-      flash.alert = " No spots found matching your filters. "
-      redirect_to spots_path
+      flash.alert = "No spots found matching your filters."
     end
   end
-  
+
   def map
     @spots = Spot.all
     @markers = @spots.map do |spot|
