@@ -21,7 +21,11 @@
         <div class="button profile-edit">Edit</div>
       </div>
     </div>
-    <% unless current_user.favourites.count === 0 %>
+    <div class="profile-infos">
+    <h4>Favorites</h4>
+    <% if current_user.favourites.count === 0 %>
+      <p class="unless">You don't have any favorites yet</p>
+    <% else %>
       <div id="favouritesControls" class="favourites carousel slide">
         <div class="carousel-inner">
           <% current_user.favourites.each_with_index do |fav, index| %>
@@ -40,12 +44,18 @@
         </button>
       </div>
     <% end %>
-    <% unless current_user.experiences.count === 0 %>
+    </div>
+    <div class="profile-infos">
+    <h4>Experiences</h4>
+    <% if current_user.experiences.count === 0  %>
+      <p class="unless">You don't have any experiences yet</p>
+    <% else %>
       <div class="experiences">
         <% current_user.experiences.each do |experience| %>
           <%= render "shared/experience", experience: %>
         <% end %>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
