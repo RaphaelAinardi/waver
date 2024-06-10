@@ -1,6 +1,7 @@
 .alert {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 100px;
+  margin: 0 8px;
+  width: calc(100% - 16px);
   z-index: 1000;
 }

@@ -1,35 +1,34 @@
 <% content_for(:page) do %>
-  Dashboard
+  User profile
 <% end %>
 <div class="container">
   <div class="profile-page">
     <div class="profile-infos">
       <div>
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-profile", crop: :fill %>
         <% else %>
           <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
         <% end %>
-
       </div>
       <div class="profile-details">
-        <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
-        <div>
-          <div class="opacity-75"><%= current_user.birthdate.strftime("%m %B %Y") %></div>
-          <div class="opacity-75"><%= current_user.email %></div>
-        </div>
-        <div class="button profile-edit">
-          <%= link_to "Edit", edit_user_registration_path(current_user)%>
+        <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+        <div data-controller="follow">
+          <div class="opacity-75"><%= @user.birthdate.strftime("%m %B %Y") %></div>
+          <%= link_to set_follow_user_path(@user), data: {turbo_method: :post, action: "click->follow#toggle"}, class:"button" do %>
+            <% if current_user.follows.find_by( second_user: @user ) %>
+              <i class="fa-solid fa-user-minus"></i> Unfollow
+            <% else %>
+              <i class="fa-solid fa-user-plus"></i> Follow
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
-    <h4>Favorites</h4>
-    <% if current_user.favourites.count === 0 %>
-      <p>You don't have any favorites yet</p>
-    <% else %>
+    <% unless @user.favourites.count === 0 %>
       <div id="favouritesControls" class="favourites carousel slide">
         <div class="carousel-inner">
-          <% current_user.favourites.each_with_index do |fav, index| %>
+          <% @user.favourites.each_with_index do |fav, index| %>
             <div class="carousel-item <%= "active" if index === 0 %>">
               <%= render "spots/cards", spot: fav.spot %>
             </div>
@@ -45,12 +44,9 @@
         </button>
       </div>
     <% end %>
-    <h4>Experiences</h4>
-    <% if current_user.experiences.count === 0  %>
-      <p>You don't have any experiences yet</p>
-    <% else %>
+    <% unless @user.experiences.count === 0 %>
       <div class="experiences">
-        <% current_user.experiences.each do |experience| %>
+        <% @user.experiences.each do |experience| %>
           <%= render "shared/experience", experience: %>
         <% end %>
       </div>
