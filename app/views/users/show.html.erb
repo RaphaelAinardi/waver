@@ -19,10 +19,13 @@
                data-controller="follow"
                data-action="click->follow#toggle"
                data-follow-path-value="<%= set_follow_user_path(@user) %>">
-            <i class="fa-solid <%= current_user.follows.find_by( second_user: @user ) ? 'fa-user-minus' : 'fa-user-plus' %>">
-            </i>
-            <%= current_user.follows.find_by( second_user: @user ) ? "Unfollow" : "Follow" %>
+            <i class="fa-solid <%= current_user.follows.find_by(second_user: @user) ? 'fa-user-minus' : 'fa-user-plus' %>"></i>
+            <%= current_user.follows.find_by(second_user: @user) ? "Unfollow" : "Follow" %>
           </div>
+        </div>
+        <!-- Ajout du bouton de tchat ici -->
+        <div class="chat-button">
+          <%= link_to "Lancer un tchat", chat_path(current_user.chatroom(@user)), class: "btn btn-primary" %>
         </div>
       </div>
     </div>
@@ -48,7 +51,7 @@
     <% unless @user.experiences.count === 0 %>
       <div class="experiences">
         <% @user.experiences.each do |experience| %>
-          <%= render "shared/experience", experience: %>
+          <%= render "shared/experience", experience: experience %>
         <% end %>
       </div>
     <% end %>
