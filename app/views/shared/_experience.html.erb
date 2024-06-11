@@ -9,13 +9,11 @@
     </div>
     <% unless (params[:action] === 'show' && params[:controller] === 'users') || current_page?(dashboard_path) || experience.user === current_user %>
       <object>
-        <%= link_to set_follow_user_path(experience.user), data: {turbo_method: :post, controller:"follow", action: "click->follow#quickToggle"}, class:"follow" do %>
-          <% if current_user.follows.find_by( second_user: experience.user ) %>
-            <i class="fa-solid fa-user-minus"></i>
-          <% else %>
-            <i class="fa-solid fa-user-plus"></i>
-          <% end %>
-        <% end %>
+        <i class="fa-solid <%= current_user.follows.find_by( second_user: @user ) ? 'fa-user-minus' : 'fa-user-plus' %> follow"
+           data-controller="follow"
+           data-action="click->follow#quickToggle"
+           data-follow-path-value="<%= set_follow_user_path(experience.user) %>">
+        </i>
       </object>
     <% end %>
   <% end %>
@@ -28,7 +26,11 @@
   </div>
   <div class="card-body">
     <div class="experience-actions">
-      <i class="fa-regular fa-heart"></i>
+      <i class="<%= current_user.likes.find_by(experience:) ? 'fa-solid' : 'fa-regular' %> fa-heart"
+         data-controller="like"
+         data-action="click->like#toggle"
+         data-like-path-value="<%= set_like_experience_path(experience) %>">
+      </i>
       <i class="fa-solid fa-comment"></i>
     </div>
     <i>"<%= experience.content %>"</i>

@@ -1,11 +1,12 @@
-<div class="card" data-controller="favourite">
+<div class="card">
   <div class="image-container">
     <a href="https://www.google.com/maps/search/?api=1&query=<%= spot.latitude %>,<%= spot.longitude %>" target="_blank" class="direction" onclick="event.stopPropagation();">
       <i class="fa-solid fa-diamond-turn-right"></i>
     </a>
     <i class="like <%= current_user.favourites.find_by(spot: spot).nil? ? 'fa-regular' : 'fa-solid' %> fa-heart"
-       data-action="click->favourite#setFavourite"
-       data-favourite-id-value="<%= spot.id %>"
+       data-controller="favourite"
+       data-action="click->favourite#toggle"
+       data-favourite-path-value="<%= set_favourite_spot_path(spot) %>"
        onclick="event.stopPropagation();">
     </i>
     <% if spot.photos.attached? %>

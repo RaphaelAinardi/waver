@@ -7,12 +7,11 @@ Rails.application.routes.draw do
 
   resources :spots, only: %i[index show] do
     member do
-      get :set_favourite
+      post :set_favourite
     end
     resources :experiences, only: %i[create update] do
       resources :comments, only: %i[create update]
     end
-    resources :favourites, only: %i[create]
     resources :reviews, only: %i[create update]
   end
 
@@ -26,9 +25,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :experiences, only: [] do
+    member do
+      post :set_like
+    end
+  end
+
   resources :comments, only: %i[destroy]
   resources :experiences, only: %i[destroy]
-  resources :favourites, only: %i[destroy]
   resources :reviews, only: %i[destroy]
-  resources :follows, only: %i[destroy]
 end
