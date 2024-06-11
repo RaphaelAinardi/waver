@@ -32,10 +32,12 @@ class SpotsController < ApplicationController
 
   def set_favourite
     @spot = Spot.find(params[:id])
-    if current_user.favourite_spots.include?(@spot)
-      current_user.favourite_spots.delete(@spot)
+    @favourite = current_user.favourites.find_by(spot: @spot)
+    if @favourite
+      Favourite.delete(@favourite)
     else
       Favourite.create(user: current_user, spot: @spot)
     end
+    head :ok
   end
 end
