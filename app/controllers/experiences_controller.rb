@@ -18,6 +18,17 @@ class ExperiencesController < ApplicationController
   def destroy
   end
 
+  def set_like
+    @experience = Experience.find(params[:id])
+    @like = current_user.likes.find_by(experience: @experience)
+    if @like
+      Like.delete(@like)
+    else
+      Like.create(user: current_user, experience: @experience)
+    end
+    head :ok
+  end
+
   private
 
   def experience_params
