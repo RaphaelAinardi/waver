@@ -4,7 +4,6 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-  background-color: $background;
   color: $main-text;
 
   h1,
@@ -19,6 +18,17 @@ body {
 
   p {
     opacity: 0.75;
+  }
+
+  .background {
+    background: linear-gradient(
+      rgba(255, 255, 255, 1) 40%,
+      rgba(81, 255, 234, 0.4) 100%
+    );
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: -2;
   }
 
   .button {
@@ -45,16 +55,6 @@ body {
     &.transparent {
       background-color: transparent;
       border: 2px solid $accent;
-
-      &:hover {
-        background-color: white;
-      }
-    }
-
-    &:hover {
-      font-weight: 500;
-      color: $main-text;
-      background-color: $hover;
     }
   }
 }
