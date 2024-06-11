@@ -2,6 +2,10 @@
   Your chats
 <% end %>
 <div class="container">
-  <h1>Chats#index</h1>
-  <p>Find me in app/views/chats/index.html.erb</p>
+  <h1>Available Chats</h1>
+  <div class="list-group">
+    <% @chats.each do |chat| %>
+      <%= link_to "Chat with #{chat.first_user == current_user ? chat.second_user.first_name : chat.first_user.first_name}", chat_path(chat), class: "list-group-item list-group-item-action" %>
+    <% end %>
+  </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_154649) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_145926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,7 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_154649) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.boolean "like"
     t.text "content"
     t.bigint "experience_id", null: false
     t.bigint "user_id", null: false
@@ -88,6 +87,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_154649) do
     t.datetime "updated_at", null: false
     t.index ["first_user_id"], name: "index_follows_on_first_user_id"
     t.index ["second_user_id"], name: "index_follows_on_second_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "experience_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["experience_id"], name: "index_likes_on_experience_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -153,6 +161,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_154649) do
   add_foreign_key "favourites", "users"
   add_foreign_key "follows", "users", column: "first_user_id"
   add_foreign_key "follows", "users", column: "second_user_id"
+  add_foreign_key "likes", "experiences"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "spots"
