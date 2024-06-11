@@ -1,22 +1,17 @@
 <div class="navbar navigation sticky-bottom">
-  <%= link_to spots_path, class: "navbar-item #{"active" if current_page?(spots_path) || current_page?(root_path)}" do %>
-    <i class="fa-solid fa-house"></i>
-    <div>Home</div>
+  <%= link_to spots_path, class: "navbar-item icon #{"active" if current_page?(spots_path) || current_page?(root_path)}" do %>
+    <i class="bi bi-house"></i>
   <% end %>
-  <%= link_to map_path, class: "navbar-item #{"active" if current_page?(map_path)}" do %>
-    <i class="fa-solid fa-map"></i>
-    <div>Map</div>
+  <%= link_to map_path, class: "navbar-item icon #{"active" if current_page?(map_path)}" do %>
+    <i class="bi bi-map"></i>
   <% end %>
-  <%= link_to feed_path, class: "navbar-item #{"active" if current_page?(feed_path)}" do %>
-    <i class="fa-solid fa-chart-line"></i>
-    <div>Feed</div>
+  <%= link_to feed_path, class: "navbar-item icon #{"active" if current_page?(feed_path)}" do %>
+    <i class="bi bi-graph-up"></i>
   <% end %>
-  <%= link_to chats_path, class: "navbar-item #{"active" if current_page?(chats_path)}" do %>
-    <i class="fa-solid fa-comment"></i>
-    <div>Chat</div>
+  <%= link_to chats_path, class: "navbar-item icon #{"active" if current_page?(chats_path)}" do %>
+    <i class="bi bi-chat"></i>
   <% end %>
-  <%= link_to dashboard_path, class: "navbar-item #{"active" if current_page?(dashboard_path)}" do %>
-    <i class="fa-solid fa-user"></i>
-    <div>Profile</div>
+  <%= link_to dashboard_path, class: "navbar-item icon #{"active" if current_page?(dashboard_path)}" do %>
+    <i class="bi bi-person"></i>
   <% end %>
 </div>
