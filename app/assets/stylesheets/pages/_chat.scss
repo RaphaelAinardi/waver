@@ -1,3 +1,18 @@
+.chat-avatar-profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.chat-item-content {
+  margin-left: 10px;
+}
+
+.chat-line {
+  border-radius: 15px !important;
+}
+
 .container.chat {
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

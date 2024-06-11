@@ -15,17 +15,19 @@
         <h5><%= @user.first_name %> <%= @user.last_name %></h5>
         <div>
           <div class="opacity-75"><%= @user.birthdate.strftime("%m %B %Y") %></div>
-          <div class="button"
-               data-controller="follow"
-               data-action="click->follow#toggle"
-               data-follow-path-value="<%= set_follow_user_path(@user) %>">
-            <i class="fa-solid <%= current_user.follows.find_by(second_user: @user) ? 'fa-user-minus' : 'fa-user-plus' %>"></i>
-            <%= current_user.follows.find_by(second_user: @user) ? "Unfollow" : "Follow" %>
+          <div class="d-flex align-items-center">
+            <div class="button me-2"
+                 data-controller="follow"
+                 data-action="click->follow#toggle"
+                 data-follow-path-value="<%= set_follow_user_path(@user) %>">
+              <i class="fa-solid <%= current_user.follows.find_by(second_user: @user) ? 'fa-user-minus' : 'fa-user-plus' %>"></i>
+              <%= current_user.follows.find_by(second_user: @user) ? "Unfollow" : "Follow" %>
+            </div>
+            <!-- Ajout du bouton de tchat ici -->
+            <div>
+              <%= link_to "Message", chat_path(current_user.chatroom(@user)), class: "button" %>
+            </div>
           </div>
-        </div>
-        <!-- Ajout du bouton de tchat ici -->
-        <div class="chat-button">
-          <%= link_to "Lancer un tchat", chat_path(current_user.chatroom(@user)), class: "btn btn-primary" %>
         </div>
       </div>
     </div>
