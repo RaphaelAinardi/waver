@@ -16,11 +16,19 @@
   height: auto;
   text-decoration: none;
   border: none;
+  position: relative;
 
   .like {
     position: absolute;
     top: 8px;
     right: 8px;
+    z-index: 2;
+    color: $accent;
+  }
+  .direction {
+    position: absolute;
+    top: 8px;
+    left: 8px;
     z-index: 2;
     color: $accent;
   }
@@ -51,6 +59,10 @@
 
     .card-location {
       font-size: 14px;
+    }
+    .text-dark {
+      --bs-text-opacity: none !important;
+      color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
     }
   }
 }
