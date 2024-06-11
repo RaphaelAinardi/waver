@@ -1,27 +1,33 @@
-<%= link_to spot_path(spot), class:"text-decoration-none text-dark " do %>
-  <div class="card">
-    <div class="image-container">
-      <% if user_signed_in? %>
-        <i class="like <%= current_user.favourites.find_by(spot: spot).nil? ? 'fa-regular' : 'fa-solid' %> fa-heart"
-          data-controller="favourite"
-          data-action="click->favourite#toggle"
-          data-favourite-path-value="<%= set_favourite_spot_path(spot) %>">
-        </i>
-      <% end %>
-      <% if spot.photos.attached? %>
-        <%= cl_image_tag spot.photos.first.key %>
-      <% else %>
-        <%= image_tag "default_photo.png", alt: "Default Image" %>
-      <% end %>
-    </div>
-    <div class="card-body">
-      <h3 class="card-title"><%= spot.name %></h3>
-      <div class="card-location opacity-75"><%= spot.location %></div>
-      <% if spot.reviews.count > 0 %>
-        <div>
-          <i class="fa-solid fa-star"></i> <%= spot.reviews.average(:rating) %>
-        </div>
-      <% end %>
-    </div>
+<div class="card">
+  <div class="image-container">
+    <a href="https://www.google.com/maps/search/?api=1&query=<%= spot.latitude %>,<%= spot.longitude %>" target="_blank" class="direction" onclick="event.stopPropagation();">
+      <i class="fa-solid fa-diamond-turn-right"></i>
+    </a>
+    <i class="like <%= current_user.favourites.find_by(spot: spot).nil? ? 'fa-regular' : 'fa-solid' %> fa-heart"
+       data-controller="favourite"
+       data-action="click->favourite#toggle"
+       data-favourite-path-value="<%= set_favourite_spot_path(spot) %>"
+       onclick="event.stopPropagation();">
+    </i>
+    <% if spot.photos.attached? %>
+      <%= cl_image_tag spot.photos.first.key %>
+    <% else %>
+      <%= image_tag "default_photo.png", alt: "Default Image" %>
+    <% end %>
   </div>
-<% end %>
+  <div class="card-body">
+    <h3 class="card-title">
+      <%= link_to spot_path(spot), class: "text-decoration-none text-dark" do %>
+        <%= spot.name %>
+      <% end %>
+    </h3>
+    <div class="card-location opacity-75"><%= spot.location %></div>
+    <% if spot.reviews.count > 0 %>
+      <div>
+        <i class="fa-solid fa-star"></i> <%= spot.reviews.average(:rating) %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to spot_path(spot), class: "stretched-link" do %>
+  <% end %>
+</div>
