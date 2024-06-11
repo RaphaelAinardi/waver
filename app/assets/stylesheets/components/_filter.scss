@@ -2,8 +2,27 @@
 
 .filters {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  overflow-x: auto;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  .filter {
+    padding: 5px 20px;
+    border: solid 2px rgba($color: black, $alpha: 0.5);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: $white;
+    transition:
+      background-color 0.3s,
+      transform 0.3s;
+
+    &.selected {
+      background-color: black;
+      color: white;
+    }
+  }
 }
 
 .form-select {

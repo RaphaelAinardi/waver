@@ -5,11 +5,9 @@
   <%= render "shared/homepage" %>
 <% end %>
 
-<div class="container">
+<div class="container" data-controller="filter">
   <%= render "filters" %>
-  <div class="spot-cards">
-    <% @spots.each do |spot| %>
-      <%= render "cards", spot: %>
-    <% end %>
+  <div class="spot-cards" data-filter-target="cards">
+    <%= render "spot_cards", spots: @spots %>
   </div>
 </div>
