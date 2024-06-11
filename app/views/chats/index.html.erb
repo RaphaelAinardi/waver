@@ -2,10 +2,31 @@
   Your chats
 <% end %>
 <div class="container">
-  <h1>Available Chats</h1>
+  <h1>Chats</h1>
   <div class="list-group">
     <% @chats.each do |chat| %>
-      <%= link_to "Chat with #{chat.first_user == current_user ? chat.second_user.first_name : chat.first_user.first_name}", chat_path(chat), class: "list-group-item list-group-item-action" %>
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to chat_path(chat), class: "chat-line list-group-item list-group-item-action bg-primary text-white rounded shadow mt-3 me-2 d-flex align-items-center" do %>
+          <div class="rounded">
+            <% if chat.first_user == current_user %>
+              <% if chat.second_user.photo.attached? %>
+                <%= cl_image_tag chat.second_user.photo.key, class: "chat-avatar-profile", crop: :fill %>
+              <% else %>
+                <%= image_tag "default_pfp.jpg", class: "chat-avatar-profile", crop: :fill %>
+              <% end %>
+            <% else %>
+              <% if chat.first_user.photo.attached? %>
+                <%= cl_image_tag chat.first_user.photo.key, class: "chat-avatar-profile", crop: :fill %>
+              <% else %>
+                <%= image_tag "default_pfp.jpg", class: "chat-avatar-profile", crop: :fill %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="chat-item-content ml-3">
+            Chat with <%= chat.first_user == current_user ? chat.second_user.first_name : chat.first_user.first_name %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -18,4 +18,14 @@ class User < ApplicationRecord
   has_many :chats_as_second_user, class_name: 'Chat', foreign_key: 'second_user_id'
 
   has_one_attached :photo
+
+  def chatroom(other_user)
+    chat = Chat.find_by(first_user_id: self.id, second_user_id: other_user.id)
+    return chat if chat # unless Chat.nil?
+
+    chat = Chat.find_by(first_user_id: other_user.id, second_user_id: self.id)
+    return chat if chat # unless Chat.nil?
+
+    Chat.create(first_user_id: self.id, second_user_id: other_user.id)
+  end
 end

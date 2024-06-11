@@ -9,7 +9,12 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chat = Chat.new(chat_params)
+    # Find or create the chat between current_user and the other user
+    @chat = Chat.between(current_user.id, params[:user_id]).first_or_initialize do |chat|
+      chat.first_user_id = current_user.id
+      chat.second_user_id = params[:user_id]
+    end
+
     if @chat.save
       redirect_to @chat
     else
