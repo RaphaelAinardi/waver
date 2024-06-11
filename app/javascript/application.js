@@ -3,4 +3,5 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "@popperjs/core";
 import "bootstrap";
-import "@rails/actioncable"
+import "@rails/actioncable";
+import "bootstrap-icons/font/bootstrap-icons.css";

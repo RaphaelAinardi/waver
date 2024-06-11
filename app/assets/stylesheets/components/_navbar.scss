@@ -3,14 +3,16 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   width: 100%;
-  border-top: solid 1px rgba(0, 0, 0, 0.5);
+  border-top: solid 1px $light-gray;
   background-color: $white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 
   .navbar-item {
     color: $main-text;
     text-decoration: none;
     text-align: center;
-    padding-bottom: 16px;
+
     font-size: 16px;
 
     &.active {
@@ -22,7 +24,7 @@
     }
 
     i {
-      font-size: 24px;
+      font-size: 30px;
     }
   }
 }
