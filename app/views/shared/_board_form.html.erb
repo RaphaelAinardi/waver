@@ -1,0 +1,21 @@
+<%= simple_form_for [board, Board.new], html: { class: "form" } do |f| %>
+      <%= f.input :image, as: :file
+                  required: true,
+                  input_html: { multiple: false }%>
+      <%= f.input :brand,
+                  required: true,
+                  placebolder: "Brand"%>
+      <%= f.input :shape,
+                  required: true,
+                  placebolder: "Shape of your board"%>
+      <%= f.input :lenght,
+                  required: true,
+                  placebolder: "Lenght"%>
+      <%= f.input :width,
+                  required: true,
+                  placebolder: "Width"%>
+      <%= f.input :thickness,
+                  required: true,
+                  placebolder: "Thickness"%>
+      <%= f.button :submit, 'Post your board', class:'button w-100' %>
+    <% end %>

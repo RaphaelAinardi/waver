@@ -55,5 +55,19 @@
         <% end %>
       </div>
     <% end %>
+     <h4>Boards</h4>
+    <% if current_user.boards.count === 0  %>
+      <p>You don't have any boards yet</p>
+    <% else %>
+      <div class="boards">
+        <% current_user.boards.each do |board| %>
+          <%= render "boards", board: %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to "Add a board", "board_form_path", class: "button board-button" %>
+    <%# <div class="button board-button">
+      Add a board
+    </div> %>
   </div>
 </div>

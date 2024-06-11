@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :boards, only: [] do
+    member do
+      post :boards
+    end
+  end
+
   resources :comments, only: %i[destroy]
   resources :experiences, only: %i[destroy]
   resources :reviews, only: %i[destroy]
