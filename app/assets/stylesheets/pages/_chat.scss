@@ -1,16 +1,58 @@
+.message-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.sender-style,
+.receiver-style {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.sender-style {
+  background-color:rgba(81, 255, 234, 0.4);
+  align-self: flex-end;
+  text-align: right;
+  border-top-right-radius: 0;
+}
+
+.receiver-style {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+  text-align: left;
+  border-top-left-radius: 0;
+}
+
+.sender-style::before,
+.receiver-style::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.sender-style::before {
+  right: -10px;
+  top: 10px;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #d1f7c4;
+}
+
+.receiver-style::before {
+  left: -10px;
+  top: 10px;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #f1f1f1 transparent transparent;
+}
+
 .chat-avatar-profile {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   margin-left: 5px;
-}
-
-.chat-item-content {
-  margin-left: 10px;
-}
-
-.chat-line {
-  border-radius: 15px !important;
 }
 
 .container.chat {
@@ -32,24 +74,60 @@
   color: $main-text;
 }
 
-.message-sent {
-  background-color: $accent; /* Couleur de fond pour les messages envoyés */
-  text-align: right;
-  margin-left: auto;
-  padding: 10px;
-  border-radius: 20px;
+.message {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
   max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.message-sent, .message-received {
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 75%;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-sent {
+  background-color: #d1f7c4; /* Couleur de fond pour les messages envoyés */
+  text-align: right;
+  margin-left: auto;
+  border-top-right-radius: 0;
+}
+
+.message-sent::before {
+  right: -10px;
+  top: 10px;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #d1f7c4;
 }
 
 .message-received {
-  background-color: $background; /* Couleur de fond pour les messages reçus */
+  background-color: #f1f1f1; /* Couleur de fond pour les messages reçus */
   text-align: left;
   margin-right: auto;
-  padding: 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  max-width: 75%;
+  border-top-left-radius: 0;
+}
+
+.message-received::before {
+  left: -10px;
+  top: 10px;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #f1f1f1 transparent transparent;
+}
+
+.message-info {
+  margin-bottom: 5px;
+}
+
+.message-content {
+  margin: 0;
 }
 
 .wrapper_btn-chat {
@@ -57,13 +135,12 @@
   align-items: center;
   background-color: $white;
   border-radius: 20px !important;
-  padding: 15px 20px;
+  padding: 5px 5px; /* Modifié */
   width: 95%;
   margin-bottom: 15px;
 }
 
 #new_message {
-  background-color: $background;
   position: sticky;
   bottom: 83px;
   display: flex;
@@ -73,14 +150,14 @@
 
 .message_content {
   background-color: transparent;
-  padding: 0px;
+  padding: 0;
   border: none !important;
 }
 
 #message_content {
   border: none !important;
   background-color: transparent;
-  padding: 0px;
+  padding: 0;
   outline: none !important;
 }
 
@@ -93,11 +170,11 @@
   border-radius: 20px;
   background-color: $background;
   padding: 10px;
-  margin-top: 20px; /* Ajoute un espace entre les messages et le formulaire */
+  margin-top: 20px;
 }
 
 .form-control {
-  border-radius: 20px; /* Rend l'input de texte arrondi */
+  border-radius: 20px;
 }
 
 .form-control:focus {
@@ -110,7 +187,7 @@
   color: $white;
   width: 50px;
   border-radius: 50% !important;
-  background-color: $main-text;
+  background-color: #007bff;
   font-size: 20px;
   display: flex;
   align-items: center;
