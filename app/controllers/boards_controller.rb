@@ -5,18 +5,19 @@ class BoardsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     @board = Board.new(board_params)
-    @board.user = User.find(params[:user_id])
+    @board.user = @user
     if @board.save
       redirect_to dashboard_path, notice: 'Your board was successfuly created'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
   def board_params
-    params.require(:board).permit(:brand, :shape, :width, :lenght, :thickness)
+    params.require(:board).permit(:image, :brand, :shape, :width, :lenght, :thickness)
   end
 end
