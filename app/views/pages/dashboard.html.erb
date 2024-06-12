@@ -10,7 +10,6 @@
         <% else %>
           <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
         <% end %>
-
       </div>
       <div class="profile-details">
         <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
@@ -23,59 +22,65 @@
         <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }%>
       </div>
     </div>
-    <h4>Favorites</h4>
-    <% if current_user.favourites.count === 0 %>
-      <p>You don't have any favorites yet</p>
-    <% else %>
-      <div id="favouritesControls" class="favourites carousel slide">
-        <div class="carousel-inner">
-          <% current_user.favourites.each_with_index do |fav, index| %>
-            <div class="carousel-item <%= "active" if index === 0 %>">
-              <%= render "spots/cards", spot: fav.spot %>
-            </div>
-          <% end %>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#favouritesControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#favouritesControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    <% end %>
-    <h4>Experiences</h4>
-    <% if current_user.experiences.count === 0  %>
-      <p>You don't have any experiences yet</p>
-    <% else %>
-      <div class="experiences">
-        <% current_user.experiences.each do |experience| %>
-          <%= render "shared/experience", experience: %>
-        <% end %>
-      </div>
-    <% end %>
-     <h4>Boards</h4>
-    <% if current_user.boards.count === 0  %>
-      <p>You don't have any boards yet</p>
-    <% else %>
-    <% current_user.boards.each do |board| %>
-      <div class="card">
-        <div class="image-container">
-          <% if board.photos.attached? %>
-            <%= cl_image_tag board.photos.first.key %>
-          <% else %>
-            <%= image_tag "default_photo.png", alt: "Default Image" %>
-          <% end %>
-        </div>
-        <div class="card-body">
-          <div class="card-title">
-            <%= board.brand %><%= board.shape %>
-            <%= board.width %>'' x <%= board.lenght %>'' x <%= board.thickness %>''
-          <% end %></div>
-        <% end %>
-      </div>
-    <% end %>
-     <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
   </div>
+
+  <h4>Favorites</h4>
+  <% if current_user.favourites.count === 0 %>
+    <p>You don't have any favorites yet</p>
+  <% else %>
+    <div id="favouritesControls" class="favourites carousel slide">
+      <div class="carousel-inner">
+        <% current_user.favourites.each_with_index do |fav, index| %>
+          <div class="carousel-item <%= "active" if index === 0 %>">
+            <%= render "spots/cards", spot: fav.spot %>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#favouritesControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#favouritesControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  <% end %>
+  <h4>Experiences</h4>
+  <% if current_user.experiences.count === 0  %>
+    <p>You don't have any experiences yet</p>
+  <% else %>
+    <div class="experiences">
+      <% current_user.experiences.each do |experience| %>
+        <%= render "shared/experience", experience: %>
+      <% end %>
+    </div>
+  <% end %>
+  <h4>Boards</h4>
+  <% if current_user.boards.count === 0  %>
+    <p>You don't have any boards yet</p>
+  <% else %>
+  <div id="favouritesControls" class="favourites carousel slide">
+    <div class="carousel-inner">
+    <% current_user.boards.each do |board| %>
+      <div class="container">
+        <div class="card">
+          <div class="image-container">
+            <% if board.image.attached? %>
+              <%= cl_image_tag board.image.key %>
+            <% else %>
+              <%= image_tag "default_photo.png", alt: "Default Image" %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              <%= board.brand %> - <%= board.shape %> -
+              <%= board.width %>'' x <%= board.lenght %>'' x <%= board.thickness %>''
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
 </div>
