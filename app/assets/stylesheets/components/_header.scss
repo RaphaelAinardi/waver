@@ -3,14 +3,14 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
   width: 100%;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
   background-color: $background;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 
   .header-item {
     color: $main-text;
     text-decoration: none;
     text-align: center;
-    padding: 8px 0;
+
     font-size: 20px;
 
     &.active {
@@ -19,6 +19,10 @@
 
     &.title {
       grid-column: span 3;
+      font-size: 40px;
+      font-family: "Spicy Rice", serif;
+      color: $alt-text;
+      letter-spacing: 2px;
     }
 
     i {
@@ -28,6 +32,12 @@
     img {
       height: 32px;
       width: 32px;
+    }
+    .avatar-profile {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
     }
   }
 }
