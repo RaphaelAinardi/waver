@@ -16,7 +16,7 @@
 .container.chat {
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: $background;
   padding: 50px;
 }
 
@@ -29,11 +29,11 @@
   padding: 12px;
   height: 300px;
   overflow-y: auto;
-  color: black;
+  color: $main-text;
 }
 
 .message-sent {
-  background-color: #d1f7c4; /* Couleur de fond pour les messages envoyés */
+  background-color: $accent; /* Couleur de fond pour les messages envoyés */
   text-align: right;
   margin-left: auto;
   padding: 10px;
@@ -42,9 +42,8 @@
   max-width: 75%;
 }
 
-
 .message-received {
-  background-color: #f1f1f1; /* Couleur de fond pour les messages reçus */
+  background-color: $background; /* Couleur de fond pour les messages reçus */
   text-align: left;
   margin-right: auto;
   padding: 10px;
@@ -53,11 +52,10 @@
   max-width: 75%;
 }
 
-
 .wrapper_btn-chat {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: $white;
   border-radius: 20px !important;
   padding: 15px 20px;
   width: 95%;
@@ -93,7 +91,7 @@
 
 .chat-form {
   border-radius: 20px;
-  background-color: #fff;
+  background-color: $background;
   padding: 10px;
   margin-top: 20px; /* Ajoute un espace entre les messages et le formulaire */
 }
@@ -109,7 +107,7 @@
 .btn_input_chat {
   flex-shrink: 0;
   height: 50px;
-  color: white;
+  color: $white;
   width: 50px;
   border-radius: 50% !important;
   background-color: $main-text;

@@ -34,12 +34,12 @@
         position: relative;
         transition: all 0.5s ease;
         border: solid 1px $gray-300;
-        border-radius: 8px;
-        background-color: $white;
+        border-radius: 16px;
+        background-color: $background;
 
         &:before,
         &:after {
-          border-radius: 8px;
+          border-radius: 16px;
           height: 100%;
           width: 50%;
           display: flex;
@@ -51,7 +51,7 @@
 
         &:before {
           background-color: $accent;
-          color: white;
+          color: $white;
           left: 0;
           content: attr(data-unchecked);
         }

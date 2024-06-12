@@ -1,67 +1,67 @@
 .swipe-container {
   overflow: auto;
   overflow-y: scroll;
-}
 
-.swipe-container .action,
-.swipe-container .swipe-element {
-  min-height: 100%;
-  background-color: transparent;
-  border: none;
-}
+  .action,
+  .swipe-element {
+    min-height: 100%;
+    background-color: transparent;
+    border: none;
+  }
 
-.swipe-container .video-container {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+  .video-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 
-.swipe-container .home-video {
-  height: 100vh;
-  width: 100%;
-  object-fit: cover;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-}
+  .home-video {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
 
-.swipe-container .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  z-index: 2;
-}
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    z-index: 2;
+  }
 
-.swipe-container .title h1 {
-  font-size: 100px;
-  margin: 0;
-  font-family: "Spicy Rice", cursive;
-}
+  .title h1 {
+    font-size: 100px;
+    margin: 0;
+    font-family: "Spicy Rice", cursive;
+  }
 
-.swipe-container .logo {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100px;
-  z-index: 3;
-}
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100px;
+    z-index: 3;
+  }
 
-.swipe-container .arrow-icon {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 3;
-}
+  .arrow-icon {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 3;
+  }
 
-.swipe-container::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .video-overlay {
@@ -79,5 +79,4 @@
   );
   pointer-events: none;
   z-index: 2;
-  opacity: 1;
 }
