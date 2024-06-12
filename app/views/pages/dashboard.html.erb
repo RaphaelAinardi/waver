@@ -1,6 +1,7 @@
 <% content_for(:page) do %>
   Dashboard
 <% end %>
+
 <div class="container">
   <div class="profile-page">
     <div class="profile-infos">
@@ -52,6 +53,46 @@
     </div>
   <% end %>
 
+  <div class="boards-header">
+    <h4>Boards</h4>
+    <%= link_to new_user_board_path(current_user), class: "button board-button" do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+  </div>
+
+  <% if current_user.boards.count == 0 %>
+    <p>You don't have any boards yet</p>
+  <% else %>
+    <div class="boards-list">
+      <% current_user.boards.each do |board| %>
+        <div class="card-board">
+          <div class="card-board-inner">
+            <div class="card-board-front">
+              <div class="image-container">
+                <% if board.image.attached? %>
+                  <%= cl_image_tag board.image.key, class: "board-image" %>
+                <% else %>
+                  <%= image_tag "surf-default.webp", alt: "Default Image", class: "board-image" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-board-back">
+              <div class="card-body">
+                <div class="board-details">
+                  <p>Brand: <%= board.brand %></p>
+                  <p>Shape: <%= board.shape %></p>
+                  <p>Width: <%= board.width %></p>
+                  <p>Length: <%= board.length %></p>
+                  <p>Thickness: <%= board.thickness %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   <h4>Experiences</h4>
   <% if current_user.experiences.count == 0 %>
     <p>You don't have any experiences yet</p>
@@ -62,35 +103,4 @@
       <% end %>
     </div>
   <% end %>
-
-  <h4>Boards</h4>
-  <% if current_user.boards.count == 0 %>
-    <p>You don't have any boards yet</p>
-  <% else %>
-    <div id="boardsControls" class="boards carousel slide">
-      <div class="carousel-inner">
-        <% current_user.boards.each do |board| %>
-          <div class="container">
-            <div class="card">
-              <div class="image-container">
-                <% if board.image.attached? %>
-                  <%= cl_image_tag board.image.key %>
-                <% else %>
-                  <%= image_tag "default_photo.png", alt: "Default Image" %>
-                <% end %>
-              </div>
-              <div class="card-body">
-                <div class="card-title">
-                  <%= board.brand %> - <%= board.shape %> -
-                  <%= board.width %>'' x <%= board.length %>'' x <%= board.thickness %>''
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-  <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
 </div>

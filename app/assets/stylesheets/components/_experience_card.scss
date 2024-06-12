@@ -32,6 +32,11 @@
       .card-user-name {
         font-size: 14px;
         font-weight: bold;
+        color: $alt-text;
+      }
+      .card-user-loc {
+        font-size: 12px;
+        color: $accent;
       }
     }
 
@@ -48,6 +53,7 @@
     height: 150px;
     overflow: hidden;
     position: relative;
+    border-radius: 12px;
 
     img {
       width: 100%;
