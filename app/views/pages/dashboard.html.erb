@@ -51,6 +51,7 @@
       </button>
     </div>
   <% end %>
+
   <h4>Experiences</h4>
   <% if current_user.experiences.count == 0 %>
     <p>You don't have any experiences yet</p>
@@ -61,27 +62,12 @@
       <% end %>
     </div>
   <% end %>
+
   <h4>Boards</h4>
   <% if current_user.boards.count == 0 %>
     <p>You don't have any boards yet</p>
   <% else %>
-  <div id="favouritesControls" class="favourites carousel slide">
-    <div class="carousel-inner">
-    <% current_user.boards.each do |board| %>
-      <div class="container">
-        <div class="card">
-          <div class="image-container">
-            <% if board.image.attached? %>
-              <%= cl_image_tag board.image.key %>
-            <% else %>
-              <%= image_tag "default_photo.png", alt: "Default Image" %>
-            <% end %>
-          </div>
-          <div class="card-body">
-            <div class="card-title">
-              <%= board.brand %> - <%= board.shape %> -
-              <%= board.width %>'' x <%= board.length %>'' x <%= board.thickness %>''
-    <div id="favouritesControls" class="favourites carousel slide">
+    <div id="boardsControls" class="boards carousel slide">
       <div class="carousel-inner">
         <% current_user.boards.each do |board| %>
           <div class="container">
@@ -105,6 +91,6 @@
       </div>
     </div>
   <% end %>
+
   <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
 </div>
-<% end %>
