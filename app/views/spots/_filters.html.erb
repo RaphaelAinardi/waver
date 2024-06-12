@@ -1,20 +1,8 @@
-
-
-<a class="button w-100 mb-3" data-bs-toggle="collapse" href="#collapseFilters" role="button" aria-expanded="false" aria-controls="collapseFilters">
-  Add filters
-</a>
-
-<div class="collapse" id="collapseFilters">
-  <div class="card card-body mb-3">
-    <%= form_with url: spots_path, method: :get, class:"filters" do %>
-      <%= select_tag :location, options_for_select(Spot.all.sort_by(&:location).pluck(:location).uniq, params[:location]), class:"form-select", include_blank: "Location" %>
-      <%= select_tag :wave_type, options_for_select(Spot.all.sort_by(&:wave_type).pluck(:wave_type).uniq, params[:wave_type]), class:"form-select", include_blank: "Wave type" %>
-      <%= select_tag :difficulty, options_for_select(Spot.all.sort_by(&:difficulty).pluck(:difficulty).uniq, params[:difficulty]), class:"form-select", include_blank: "Difficulty"%>
-      <div class="sort_by d-flex gap-3 justify-content-center ">
-        <%= check_box_tag :average_rating, 'average', label: "average", placeholder: "average" %>
-        <%= label_tag :average_rating, "Sort by average rating" %>
-      </div>
-      <%= submit_tag "Filter", name: "", class: "button w-100" %>
-    <% end %>
-  </div>
+<div class="filters">
+  <button class="filter" data-action="click->filter#all" data-filter="all">All</button>
+  <button class="filter" data-action="click->filter#select" data-wave="Beach break">Beach break</button>
+  <button class="filter" data-action="click->filter#select" data-wave="Reef break">Reef break</button>
+  <button class="filter" data-action="click->filter#select" data-difficulty="1">Level 1</button>
+  <button class="filter" data-action="click->filter#select" data-difficulty="2">Level 2</button>
+  <button class="filter" data-action="click->filter#select" data-difficulty="3">Level 3</button>
 </div>
