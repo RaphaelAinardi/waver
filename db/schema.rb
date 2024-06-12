@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_090435) do
   create_table "boards", force: :cascade do |t|
     t.string "brand"
     t.string "shape"
-    t.float "lenght"
+    t.float "length"
     t.float "width"
     t.float "thickness"
     t.integer "user_id"
