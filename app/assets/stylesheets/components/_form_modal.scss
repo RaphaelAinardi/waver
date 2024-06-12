@@ -9,8 +9,10 @@
 
   .swipe-element {
     height: fit-content;
-    background-color: $white;
+    background-color: $background;
     border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
 
     .arrow-icon {
       height: 60px;

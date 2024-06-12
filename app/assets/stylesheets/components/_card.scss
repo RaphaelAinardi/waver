@@ -10,11 +10,11 @@
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: $background;
   color: $main-text;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -59,11 +59,6 @@
 
     .card-location {
       font-size: 12px;
-    }
-
-    .text-dark {
-      --bs-text-opacity: none !important;
-      color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
     }
   }
 }
