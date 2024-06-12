@@ -12,6 +12,10 @@
     <i class="bi bi-chat"></i>
   <% end %>
   <%= link_to dashboard_path, class: "navbar-item icon #{"active" if current_page?(dashboard_path)}" do %>
-    <i class="bi bi-person"></i>
+    <% if current_user.photo.present? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
+    <% else %>
+       <%= image_tag "default_pfp.jpg", class: "chat-avatar-profile", crop: :fill %>
+    <% end %>
   <% end %>
 </div>

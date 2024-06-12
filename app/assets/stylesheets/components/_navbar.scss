@@ -5,15 +5,14 @@
   width: 100%;
   border-top: solid 1px $light-gray;
   background-color: $white;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
   padding: 12px 0;
 
   .navbar-item {
     color: $main-text;
     text-decoration: none;
     text-align: center;
-
     font-size: 16px;
 
     &.active {
@@ -21,17 +20,25 @@
     }
 
     &.disabled {
-      color: lightgrey;
+      color: $light-gray;
     }
 
     i {
-      font-size: 30px;
-    }
-    .bi-house {
       font-size: 35px;
+      font-weight: bold;
+      -webkit-text-stroke: 1px;
     }
+
+    .bi-house,
     .bi-person {
       font-size: 35px;
+    }
+
+    .avatar-profile {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
     }
   }
 }
