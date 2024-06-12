@@ -1,7 +1,13 @@
 .profile-page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
+
+  h4,
+  h5,
+  .opacity-75 {
+    color: $alt-text;
+  }
 
   .profile-infos {
     width: 100%;
@@ -11,7 +17,14 @@
     display: flex;
     gap: 24px;
     background-color: $background;
+    border-radius: 20px;
 
+    .avatar-profile {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
     .profile-details {
       flex-grow: 1;
       display: flex;
@@ -20,9 +33,13 @@
       position: relative;
 
       .profile-edit {
-        position: absolute;
         top: 0;
         right: 0;
+      }
+      .profile-button {
+        display: flex;
+        gap: 12px;
+        text-decoration: none;
       }
     }
   }
