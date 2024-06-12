@@ -11,13 +11,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
+
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body>
     <div class="wrapper" data-controller="experience">
-      <%= render "shared/header" %>
+      <%= render "shared/header" unless current_page?(map_path) %>
       <%= render "shared/flashes" %>
       <div class="background"></div>
       <%= yield %>

@@ -1,8 +1,10 @@
 <div class="modal fade swipe-container" id="homepage" tabindex="-1" aria-labelledby="homepageLabel" aria-hidden="true" data-controller="modal" data-action="scroll->modal#handleScroll touchend->modal#handleTouchEnd">
   <div class="modal-content swipe-element" data-modal-target="video">
-    <%= image_tag "waver_logo.png", alt: "Waver", class: "logo" %>
     <div class="video-container">
-      <%= video_tag "waver_video.mp4", alt: "Surf video", playsinline: true, autoplay: true, loop: true, muted: true, class: "home-video" %>
+      <div class="title">
+        <h1>Waver</h1>
+      </div>
+      <%= video_tag "home.mp4", alt: "Home video", playsinline: true, autoplay: true, loop: true, muted: true, class: "home-video" %>
       <div class="video-overlay"></div>
     </div>
     <%= image_tag "arrow_icon.svg", class: "arrow-icon" %>

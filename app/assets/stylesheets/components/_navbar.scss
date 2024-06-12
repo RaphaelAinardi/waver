@@ -4,24 +4,21 @@
   gap: 8px;
   width: 100%;
   border-top: solid 1px $light-gray;
-  background-color: $white;
+  background-color: $background;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  padding: 12px 0;
+  padding: 8px 0 20px 0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 
   .navbar-item {
-    color: $main-text;
+    color: $alt-text;
     text-decoration: none;
     text-align: center;
-
+    -webkit-text-stroke: 0.5px;
     font-size: 16px;
 
     &.active {
       color: $accent;
-    }
-
-    &.disabled {
-      color: lightgrey;
     }
 
     i {
