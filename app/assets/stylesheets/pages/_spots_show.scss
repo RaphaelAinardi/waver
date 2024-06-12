@@ -12,6 +12,36 @@
   transform: translate(-50%, 0);
 }
 
+.weather-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  white-space: nowrap;
+
+  .infos {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 8px;
+    padding: 12px 4px;
+    overflow-x: auto;
+
+    .info {
+      width: 50px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .info-title {
+    padding: 12px 0 0 12px;
+  }
+}
+
 .disapear {
   height: 0px;
   width: Opx;

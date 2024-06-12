@@ -47,9 +47,10 @@
   }
 
   .card-body {
-    padding: 12px;
+    display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 12px;
 
     .card-title {
       font-size: 14px;
