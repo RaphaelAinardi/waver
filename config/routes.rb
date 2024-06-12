@@ -23,17 +23,12 @@ Rails.application.routes.draw do
     member do
       post :set_follow
     end
+    resources :boards, only: %i[new create]
   end
 
   resources :experiences, only: [] do
     member do
       post :set_like
-    end
-  end
-
-  resources :boards, only: [] do
-    member do
-      post :boards
     end
   end
 

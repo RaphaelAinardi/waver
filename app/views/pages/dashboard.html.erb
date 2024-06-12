@@ -59,15 +59,23 @@
     <% if current_user.boards.count === 0  %>
       <p>You don't have any boards yet</p>
     <% else %>
-      <div class="boards">
-        <% current_user.boards.each do |board| %>
-          <%= render "boards", board: %>
+    <% current_user.boards.each do |board| %>
+      <div class="card">
+        <div class="image-container">
+          <% if board.photos.attached? %>
+            <%= cl_image_tag board.photos.first.key %>
+          <% else %>
+            <%= image_tag "default_photo.png", alt: "Default Image" %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            <%= board.brand %><%= board.shape %>
+            <%= board.width %>'' x <%= board.lenght %>'' x <%= board.thickness %>''
+          <% end %></div>
         <% end %>
       </div>
     <% end %>
-    <%= link_to "Add a board", "board_form_path", class: "button board-button" %>
-    <%# <div class="button board-button">
-      Add a board
-    </div> %>
+     <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
   </div>
 </div>

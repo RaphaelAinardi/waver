@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_143901) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_090435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_143901) do
   end
 
   create_table "boards", force: :cascade do |t|
-    t.string "image"
     t.string "brand"
     t.string "shape"
     t.float "lenght"
