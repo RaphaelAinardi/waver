@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable";
 
 // Connects to data-controller="chat-subscription"
 export default class extends Controller {
-  static values = { chatId: Number };
+  static values = { chatId: Number, currentUserId: Number };
   static targets = ["messages"];
 
   connect() {
@@ -11,8 +11,6 @@ export default class extends Controller {
       { channel: "ChatChannel", id: this.chatIdValue },
       { received: (data) => this.#insertMessageAndScrollDown(data) }
     );
-
-    this.#scrollDown();
   }
 
   disconnect() {
@@ -25,14 +23,35 @@ export default class extends Controller {
   }
 
   #insertMessageAndScrollDown(data) {
-    this.messagesTarget.insertAdjacentHTML("beforeend", data);
-    this.#scrollDown();
+    const currentUserIsSender = this.currentUserIdValue === data.sender_id;
+    const messageElement = this.#buildMessageElement(
+      currentUserIsSender,
+      data.message
+    );
+
+    this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
   }
 
-  #scrollDown() {
-    console.log("ca scrolle ?");
-    console.log(this.messagesTarget);
+  #buildMessageElement(currentUserIsSender, message) {
+    return `
+      <div class="message-row d-flex ${this.#justifyClass(
+        currentUserIsSender
+      )}">
+        <div class="${this.#userStyleClass(currentUserIsSender)}">
+          ${message}
+        </div>
+      </div>
+    `;
+  }
 
-    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+  #justifyClass(currentUserIsSender) {
+    return currentUserIsSender
+      ? "justify-content-end"
+      : "justify-content-start";
+  }
+
+  #userStyleClass(currentUserIsSender) {
+    return currentUserIsSender ? "sender-style" : "receiver-style";
   }
 }
