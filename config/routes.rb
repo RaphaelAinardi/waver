@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     member do
       post :set_follow
     end
+    resources :boards, only: %i[new create]
   end
 
   resources :experiences, only: [] do

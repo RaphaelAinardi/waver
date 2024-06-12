@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :messages
   has_many :reviews
+  has_many :boards
 
   has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
   has_many :chats_as_first_user, class_name: 'Chat', foreign_key: 'first_user_id'

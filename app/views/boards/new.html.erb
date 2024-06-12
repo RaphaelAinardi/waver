@@ -1,0 +1,24 @@
+<div class="container">
+
+  <h1>Add your board</h1>
+
+  <%= simple_form_for [@user, @board] do |f| %>
+    <%= f.input :image, as: :file,
+                input_html: { multiple: false }%>
+    <%= f.input :brand, as: :string,
+                required: true %>
+    <%= f.input :shape, collection: ["longboard", "funboard", "fish", "shortboard", "gun"],
+                required: true %>
+    <%= f.input :lenght, as: :float,
+                required: true,
+                placeholder: "in inch"%>
+    <%= f.input :width, as: :float,
+                required: true,
+                placeholder: "in inch"%>
+    <%= f.input :thickness,
+                required: true, as: :float,
+                placeholder: "in inch"%>
+    <%= f.button :submit, 'Post your board', class:'button w-100' %>
+  <% end %>
+
+</div>
