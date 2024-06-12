@@ -9,7 +9,7 @@
   <% end %>
 
   <%= link_to dashboard_path, class: "header-item profile-link" do %>
-    <% if current_user.photo.present? %>
+    <% if current_user && current_user.photo.present? %>
       <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
     <% else %>
       <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
