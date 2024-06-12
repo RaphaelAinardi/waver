@@ -18,6 +18,6 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:image, :brand, :shape, :width, :lenght, :thickness)
+    params.require(:board).permit(:image, :brand, :shape, :width, :length, :thickness)
   end
 end

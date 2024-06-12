@@ -3,7 +3,7 @@ class Board < ApplicationRecord
 
   validates :brand, presence: true
   validates :shape, presence: true
-  validates :lenght, presence: true
+  validates :length, presence: true
   validates :width, presence: true
   validates :thickness, presence: true
 

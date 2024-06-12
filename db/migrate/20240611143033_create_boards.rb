@@ -4,7 +4,7 @@ class CreateBoards < ActiveRecord::Migration[7.1]
       t.string :image
       t.string :brand
       t.string :shape
-      t.float :lenght
+      t.float :length
       t.float :width
       t.float :thickness
       t.integer :user_id
