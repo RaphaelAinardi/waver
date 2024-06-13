@@ -2,29 +2,19 @@
   <%= @chat.second_user.first_name %>
 <% end %>
 
-<div class="flex-grow-1 chat d-flex flex-column"
-      data-controller="chat-subscription"
-      data-chat-subscription-chat-id-value="<%= @chat.id %>"
-      data-chat-subscription-current-user-id-value="<%= current_user.id %>">
+<div class="chat-show"
+     data-controller="chat-subscription"
+     data-chat-subscription-chat-id-value="<%= @chat.id %>"
+     data-chat-subscription-current-user-id-value="<%= current_user.id %>">
   <div class="messages" data-chat-subscription-target="messages">
     <% @chat.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-          <%= render "messages/message", message: message %>
-        </div>
-      </div>
+      <%= render "messages/message", message: %>
     <% end %>
   </div>
-  <%= simple_form_for [@chat, @message],
-    html: { data: { action: "turbo:submit-end->chat-subscription#resetForm" }, class: "input-group" } do |f| %>
-    <div class="wrapper_btn-chat">
-      <%= f.input :content,
-        label: false,
-        placeholder: "Write your message...",
-        wrapper_html: { class: "form-control" } %>
-      <%= button_tag class:"btn_input_chat" do  %>
-        <i class='fa-solid fa-location-arrow'></i>
-      <% end %>
-    </div>
+  <%= simple_form_for [@chat, @message], html: { data: { action: "turbo:submit-end->chat-subscription#resetForm" }, class: "chat-input" } do |f| %>
+    <%= f.input :content, label: false, placeholder: "Write your message...", wrapper: false, input_html: {class: "chat-input-content"} %>
+    <%= button_tag class:"chat-input-send" do  %>
+      <i class="fa-solid fa-paper-plane"></i>
+    <% end %>
   <% end %>
 </div>
