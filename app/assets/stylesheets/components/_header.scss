@@ -1,7 +1,4 @@
 .header {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
   width: 100%;
   background-color: $background;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -10,34 +7,13 @@
     color: $main-text;
     text-decoration: none;
     text-align: center;
-
-    font-size: 20px;
-
-    &.active {
-      color: $accent;
-    }
+    width: 100%;
 
     &.title {
-      grid-column: span 3;
       font-size: 40px;
-      font-family: "Spicy Rice", serif;
+      font-family: $concert-one;
       color: $alt-text;
       letter-spacing: 2px;
-    }
-
-    i {
-      font-size: 28px;
-    }
-
-    img {
-      height: 32px;
-      width: 32px;
-    }
-    .avatar-profile {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      object-fit: cover;
     }
   }
 }
