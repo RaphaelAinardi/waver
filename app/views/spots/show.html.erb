@@ -16,7 +16,7 @@
     </label>
   </div>
   <div data-switch-target="one">
-    <%= render "infos" %>
+    <%= render "infos", url: @url %>
   </div>
   <div data-switch-target="two" class="experiences disapear">
     <% @spot.experiences.each do |experience| %>

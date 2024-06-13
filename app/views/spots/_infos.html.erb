@@ -13,7 +13,22 @@
       <strong>Difficulty:</strong> <%= @spot.difficulty %>
     </div>
   </div>
+  <i class="bi bi-camera-reels-fill" data-bs-toggle="modal" data-bs-target="#videoModal"></i>
 </div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="video-player-component">
+        <div class="video-player-container loading"
+          data-controller="video-player"
+          data-video-player-url-value="<%= @url %>">
+          <div data-video-player-target="player"></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+  </div>
+</div>
+
 <div class="weather-infos" data-controller="weather-infos-scroll">
   <div class="infos card" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
     <% @hours.each do |value| %>
