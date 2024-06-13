@@ -1,20 +1,7 @@
 <div class="navbar header sticky-top">
-  <%= link_to root_path, class: "header-item" do %>
-    <%= image_tag "waver_logo.png" %>
-  <% end %>
   <% if content_for?(:page) %>
     <div class="header-item title">
       <strong><%= yield :page %></strong>
     </div>
-  <% end %>
-
-  <%= link_to dashboard_path, class: "header-item profile-link" do %>
-    <% if current_user && current_user.photo.present? %>
-      <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
-    <% else %>
-      <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
-        <% end %>
-
-
   <% end %>
 </div>
