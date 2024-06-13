@@ -1,17 +1,22 @@
 <div class="navbar navigation sticky-bottom">
-  <%= link_to spots_path, class: "navbar-item icon #{"active" if current_page?(spots_path) || current_page?(root_path)}" do %>
+  <%= link_to spots_path, class: "navbar-item #{"active" if current_page?(spots_path) || current_page?(root_path)}" do %>
     <i class="bi bi-house"></i>
+    <div class="dot"></div>
   <% end %>
-  <%= link_to map_path, class: "navbar-item icon #{"active" if current_page?(map_path)}" do %>
+  <%= link_to map_path, class: "navbar-item #{"active" if current_page?(map_path)}" do %>
     <i class="bi bi-map"></i>
+    <div class="dot"></div>
   <% end %>
-  <%= link_to feed_path, class: "navbar-item icon #{"active" if current_page?(feed_path)}" do %>
-    <i class="bi bi-graph-up"></i>
+  <%= link_to feed_path, class: "navbar-item #{"active" if current_page?(feed_path)}" do %>
+    <%= image_tag "waver_logo.png" %>
+    <div class="dot"></div>
   <% end %>
-  <%= link_to chats_path, class: "navbar-item icon #{"active" if current_page?(chats_path)}" do %>
+  <%= link_to chats_path, class: "navbar-item #{"active" if current_page?(chats_path)}" do %>
     <i class="bi bi-chat"></i>
+    <div class="dot"></div>
   <% end %>
-  <%= link_to dashboard_path, class: "navbar-item icon #{"active" if current_page?(dashboard_path)}" do %>
+  <%= link_to dashboard_path, class: "navbar-item #{"active" if current_page?(dashboard_path)}" do %>
     <i class="bi bi-person"></i>
+    <div class="dot"></div>
   <% end %>
 </div>
