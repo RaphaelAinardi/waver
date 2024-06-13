@@ -1,0 +1,43 @@
+$video-border-radius: .5rem;
+$transition-duration: 0.5s;
+$video-width-ratio: 16;
+$video-height-ratio: 9;
+$video-ratio: #{$video-width-ratio} / #{$video-height-ratio};
+$video-border-width: 0rem;
+$video-border-offset: 0rem;
+
+.video-player-component {
+  padding: calc(#{$video-border-width} + #{$video-border-offset});
+  width: 100%;
+
+  .video-player-container {
+    position: relative;
+    aspect-ratio: $video-ratio;
+    border-radius: $video-border-radius;
+
+    div[data-video-player-target="player"] {
+      border-radius: $video-border-radius;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+
+      media-player {
+        border-radius: $video-border-radius;
+        height: 100%;
+        video {
+          width: 100%;
+          aspect-ratio: $video-ratio;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      --bs-btn-close-bg: url("xmark-solid.svg");
+      --bs-btn-close-opacity: 1;
+    }
+  }
+}

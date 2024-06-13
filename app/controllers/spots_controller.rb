@@ -32,6 +32,7 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @hours = (0..24).to_a.map { |n| (n + Time.now.hour) % 24 }
     @weather_data = GetWeather.new(spot: @spot).call
+    @url = "https://deliverys4.quanteec.com/contents/encodings/vod/1f47d8af-565c-4517-3436-3330-6d61-63-92d3-9ca24167c7a5d/master.m3u8"
   end
 
   def set_favourite

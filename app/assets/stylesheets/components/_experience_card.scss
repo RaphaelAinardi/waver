@@ -1,7 +1,6 @@
 .experiences {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .experience-card {
@@ -14,6 +13,7 @@
   flex-direction: column;
   width: 100%;
   height: auto;
+  margin-bottom: 12px;
 
   .experience-header {
     width: 100%;

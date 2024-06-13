@@ -2,31 +2,24 @@
   Your chats
 <% end %>
 <div class="container">
-  <h1>Chats</h1>
-  <div class="list-group">
+  <div class="chats">
     <% @chats.each do |chat| %>
-      <div class="d-flex justify-content-between align-items-center">
-        <%= link_to chat_path(chat), class: "chat-line list-group-item list-group-item-action bg-primary text-white rounded shadow mt-3 me-2 d-flex align-items-center" do %>
-          <div class="rounded">
-            <% if chat.first_user == current_user %>
-              <% if chat.second_user.photo.attached? %>
-                <%= cl_image_tag chat.second_user.photo.key, class: "chat-avatar-profile", crop: :fill %>
-              <% else %>
-                <%= image_tag "default_pfp.jpg", class: "chat-avatar-profile", crop: :fill %>
-              <% end %>
-            <% else %>
-              <% if chat.first_user.photo.attached? %>
-                <%= cl_image_tag chat.first_user.photo.key, class: "chat-avatar-profile", crop: :fill %>
-              <% else %>
-                <%= image_tag "default_pfp.jpg", class: "chat-avatar-profile", crop: :fill %>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="chat-item-content ml-3">
-            Chat with <%= chat.first_user == current_user ? chat.second_user.first_name : chat.first_user.first_name %>
-          </div>
+      <%= link_to chat_path(chat), class: "chat" do %>
+        <% if chat.second_user.photo.attached? %>
+          <%= cl_image_tag chat.second_user.photo.key, class: "avatar", crop: :fill %>
+        <% else %>
+          <%= image_tag "default_pfp.jpg", class: "avatar", crop: :fill %>
         <% end %>
-      </div>
+        <div class="chat-body">
+          <div class="chat-receiver"><%= chat.first_user == current_user ? chat.second_user.first_name : chat.first_user.first_name %></div>
+          <% if chat.messages.count != 0 %>
+            <div class="preview">
+              <div class="text-truncate"><%= "You:" if chat.messages.last.user === current_user %> <%= chat.messages.last.content.truncate(25) %></div>
+              <div><%= chat.messages.last.created_at.strftime("%l:%M %p") %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
