@@ -1,6 +1,7 @@
 .map {
   flex: 1;
   outline: none !important;
+  margin-bottom: -9px;
 }
 
 .mapboxgl-ctrl-bottom-right,
@@ -39,7 +40,7 @@
 
 .mapboxgl-ctrl-top-right {
   right: 0;
-  bottom: 15px !important;
+  bottom: 24px !important;
   top: auto !important;
 }
 

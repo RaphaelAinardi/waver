@@ -20,7 +20,8 @@
 
   <body>
     <div class="wrapper" data-controller="experience">
-      <%= render "shared/header" unless current_page?(map_path) %>
+      <%= render "shared/header" unless current_page?(map_path) || current_page?(dashboard_path) %>
+
       <%= render "shared/flashes" %>
       <div class="background"></div>
       <%= yield %>

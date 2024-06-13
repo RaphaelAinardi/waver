@@ -1,96 +1,96 @@
 <% content_for(:page) do %>
   Dashboard
 <% end %>
+
 <div class="container">
-  <div class="profile-page">
+  <div class="profile-page-details">
+    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-buttons" do %>
+      <i class="fa-solid fa-door-open"></i>
+    <% end %>
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
+    <% else %>
+      <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
+    <% end %>
     <div class="profile-infos">
-      <div>
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar-profile", crop: :fill %>
-        <% else %>
-          <%= image_tag "default_pfp.jpg", class: "avatar-profile", crop: :fill %>
-        <% end %>
-      </div>
-      <div class="profile-details">
-        <div class="profile-buttons-container">
-          <button class="button profile-edit" title="Edit">
-            <i class="fas fa-edit"></i>
-          </button>
-          <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "button profile-edit", title: "Log out" do %>
-            <i class="fas fa-sign-out-alt"></i>
-          <% end %>
-        </div>
-        <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
+      <h5><%= current_user.first_name %> <%= current_user.last_name %></h5>
+      <div class="follow">
         <div>
-          <div class="opacity-75"><%= current_user.birthdate.strftime("%m %B %Y") %></div>
-          <div class="opacity-75"><%= current_user.email %></div>
+          <p><%= current_user.experiences.count %></p>
+          <p>Posts</p>
+        </div>
+        <div>
+          <p><%= Follow.where(second_user: current_user).count %></p>
+          <p>Followers</p>
+        </div>
+        <div>
+          <p><%= current_user.follows.count %></p>
+          <p>Following</p>
         </div>
       </div>
     </div>
   </div>
 
-  <h4>Favorites</h4>
-  <% if current_user.favourites.count == 0 %>
-    <p>You don't have any favorites yet</p>
-  <% else %>
-    <div id="favouritesControls" class="favourites carousel slide">
-      <div class="carousel-inner">
+  <div class="profile-page">
+    <div class="profile-header"><h4>Favorites</h4></div>
+    <% if current_user.favourites.count == 0 %>
+      <p>You don't have any favorites yet</p>
+    <% else %>
+      <div class="favourites">
         <% current_user.favourites.each_with_index do |fav, index| %>
-          <div class="carousel-item <%= "active" if index == 0 %>">
+          <div>
             <%= render "spots/cards", spot: fav.spot %>
           </div>
         <% end %>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#favouritesControls" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#favouritesControls" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  <% end %>
+    <% end %>
 
-  <h4>Experiences</h4>
-  <% if current_user.experiences.count == 0 %>
-    <p>You don't have any experiences yet</p>
-  <% else %>
-    <div class="experiences">
-      <% current_user.experiences.each do |experience| %>
-        <%= render "shared/experience", experience: experience %>
+    <div class="profile-header">
+      <h4>Boards</h4>
+      <%= link_to new_user_board_path(current_user), class: "board-button" do %>
+        <i class="fas fa-plus"></i>
       <% end %>
     </div>
-  <% end %>
-
-  <h4>Boards</h4>
-  <% if current_user.boards.count == 0 %>
-    <p>You don't have any boards yet</p>
-  <% else %>
-    <div id="boardsControls" class="boards carousel slide">
-      <div class="carousel-inner">
+    <% if current_user.boards.count == 0 %>
+      <p>You don't have any boards yet</p>
+    <% else %>
+      <div class="boards-list">
         <% current_user.boards.each do |board| %>
-          <div class="container">
-            <div class="card">
-              <div class="image-container">
+          <div class="card-board" data-controller="flip" data-action="click->flip#rotate">
+            <div class="card-board-inner" data-flip-target="card">
+              <div class="card-board-front">
                 <% if board.image.attached? %>
-                  <%= cl_image_tag board.image.key %>
+                  <%= cl_image_tag board.image.key, class: "board-image" %>
                 <% else %>
-                  <%= image_tag "default_photo.png", alt: "Default Image" %>
+                  <%= image_tag "surf-default.webp", alt: "Default Image", class: "board-image" %>
                 <% end %>
               </div>
-              <div class="card-body">
-                <div class="card-title">
-                  <%= board.brand %> - <%= board.shape %> -
-                  <%= board.width %>'' x <%= board.length %>'' x <%= board.thickness %>''
-                </div>
+              <div class="card-board-back">
+                  <div><strong>Brand:</strong> <div class="board-details"><%= board.brand %></div></div>
+                  <div><strong>Shape:</strong> <div class="board-details"><%= board.shape.capitalize %></div></div>
+                  <div>
+                    <strong>Dimensions:</strong>
+                    <div class="board-details">
+                      <%= board.length.to_s.gsub(/(\d+)\.(\d+)/, '\1\'\2"') %> x
+                      <%= board.width.to_s.gsub(/(\d+)\.(\d+)/, '\1\'\2"') %> x
+                      <%= board.thickness.to_s.gsub(/(\d+)\.(\d+)/, '\1\'\2"') %>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
         <% end %>
       </div>
-    </div>
-  <% end %>
-
-  <%= link_to "Add a board", new_user_board_path(current_user), class: "button board-button" %>
+    <% end %>
+    <div class="profile-header"><h4>Experiences</h4></div>
+    <% if current_user.experiences.count == 0 %>
+      <p>You don't have any experiences yet</p>
+    <% else %>
+      <div class="experiences">
+        <% current_user.experiences.each do |experience| %>
+          <%= render "shared/experience", experience: experience %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
