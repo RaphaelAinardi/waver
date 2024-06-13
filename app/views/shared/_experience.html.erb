@@ -1,7 +1,7 @@
 <div class="experience-card">
-  <%= link_to (experience.user === current_user ? dashboard_path : user_path(experience.user)), class: "text-decoration-none text-primary experience-header" do %>
+  <%= link_to (experience.user === current_user ? dashboard_path : user_path(experience.user)), class: "text-decoration-none experience-header" do %>
     <div>
-      <%= image_tag "default_pfp.jpg", class: "avatar-bordered", crop: :fill %>
+      <%= image_tag "default_pfp.jpg", class: "avatar", crop: :fill %>
     </div>
     <div class="profile-details">
       <div class="card-user-name"><%= experience.user.first_name %> <%= experience.user.last_name %></div>
