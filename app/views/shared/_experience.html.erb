@@ -5,7 +5,7 @@
     </div>
     <div class="profile-details">
       <div class="card-user-name"><%= experience.user.first_name %> <%= experience.user.last_name %></div>
-      <div class="card-user-loc"><%= experience.spot.location %></div>
+      <div><%= experience.spot.location %></div>
     </div>
     <% unless (params[:action] === 'show' && params[:controller] === 'users') || current_page?(dashboard_path) || experience.user === current_user %>
       <object>
