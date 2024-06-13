@@ -1,7 +1,6 @@
 .experiences {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .experience-card {
@@ -14,7 +13,7 @@
   flex-direction: column;
   width: 100%;
   height: auto;
-  padding: 12px;
+  margin-bottom: 12px;
 
   .experience-header {
     width: 100%;
@@ -22,6 +21,8 @@
     display: flex;
     gap: 8px;
     position: relative;
+    color: $alt-text;
+    padding: 12px 12px 0 12px;
 
     .profile-details {
       display: flex;
@@ -38,8 +39,8 @@
     .follow {
       color: $accent;
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 24px;
+      right: 16px;
     }
   }
 
@@ -59,6 +60,7 @@
 
   .card-body {
     font-size: 14px;
+    padding: 0 12px 12px 12px;
 
     .experience-actions {
       margin: 8px 0;

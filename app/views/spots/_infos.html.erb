@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div>
-      <strong>Description:</strong> <%= @spot.description %>
+      <%= @spot.description %>
     </div>
     <div>
       <strong>Wave type:</strong> <%= @spot.wave_type %>
@@ -14,6 +14,45 @@
     </div>
   </div>
   <i class="bi bi-camera-reels-fill" data-bs-toggle="modal" data-bs-target="#videoModal"></i>
+</div>
+
+<div data-controller="weather-infos-scroll">
+  <div class="card hours" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
+    <% @hours.each do |value| %>
+      <% if value % 2 === 0 %>
+        <div class="info"><%= value %>h</div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="weather-infos" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
+    <% @hours.each_with_index do |value, index| %>
+      <% if value % 2 === 0 %>
+        <div class="card infos">
+          <div class="info cloud">
+            <%= image_tag "#{@weather_data["cloud_cover"][index] > 66 ? "cloud.svg" : (@weather_data["cloud_cover"][index] < 33 ? "sun.svg" : "cloud-sun.svg")}", style: "width: 48px" %>
+          </div>
+          <div class="card info">
+            <div class="info-title">Water</div>
+            <%= @weather_data["water_temperature"][index].round %>°C
+          </div>
+          <div class="card info swell d-flex flex-column gap-3 align-items-center">
+            <div class="info-title">Swell</div>
+            <%= @weather_data["swell"][index][0].round %>s
+            <%= image_tag "north-arrow.svg", style: "transform: rotate(#{@weather_data["swell"][index][1]}deg); width: 24px" %>
+            <%= @weather_data["swell"][index][2].round(1) %> m
+          </div>
+          <div class="card info">
+            <div class="info-title">Wind</div>
+            <%= image_tag "north-#{@weather_data["wind"][index][1] < 2.5 ? "green" : (@weather_data["wind"][index][1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["wind"][index][0]}deg); width: 24px" %>
+          </div>
+          <div class="card info">
+            <div class="info-title">Current</div>
+            <%= image_tag "north-#{@weather_data["current"][index][1] < 0.05 ? "green" : (@weather_data["current"][index][1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["current"][index][0]}deg); width: 24px" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
@@ -27,46 +66,4 @@
         </div>
       </div>
   </div>
-</div>
-
-<div class="weather-infos" data-controller="weather-infos-scroll">
-  <div class="infos card" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
-    <% @hours.each do |value| %>
-      <div class="info">
-        <%= value %>h
-      </div>
-    <% end %>
-  </div>
-  <% @weather_data.each do |key, data| %>
-    <div class="card">
-      <h5 class="card-title info-title"><%= key.to_s.gsub('_', ' ').capitalize %></h5>
-      <div class="infos" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
-        <% data.each_with_index do |value, index| %>
-          <div class="info">
-            <% if key === 'cloud_cover' %>
-              <i class="fa-solid <%= value > 66 ? "fa-cloud" : (value < 33 ? "fa-sun" : "fa-cloud-sun")%>"></i>
-            <% elsif key === 'swell_period' %>
-              <%= value.round %>s
-            <% elsif key === 'swell_direction' %>
-              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value}deg); width: 18px" %>
-            <% elsif key === 'wave_height' %>
-              <%= value %>m
-            <% elsif key === 'sea_level' %>
-              <%= (value * -100).round %>%
-            <% elsif key === 'current' %>
-              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value[0]}deg); width: 18px" %>
-              <%= value[1] %>
-            <% elsif key === 'wind' %>
-              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{value[0]}deg); width: 18px" %>
-              <%= value[1] %>
-            <% elsif key === 'water_temperature' %>
-              <%= value.round %>°C
-            <% else %>
-              <%= value %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>
