@@ -47,33 +47,29 @@
           </div>
           <div class="card info swell d-flex flex-column gap-3 align-items-center">
             <div class="info-title">Swell</div>
-            <% swell_period = @weather_data["swell"][index][0] %>
-            <% swell_direction = @weather_data["swell"][index][1] %>
-            <% swell_height = @weather_data["swell"][index][2] %>
-            <% if swell_period.present? && swell_direction.present? && swell_height.present? %>
-              <%= swell_period.round %>s
-              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{swell_direction}deg); width: 24px" %>
-              <%= swell_height.round(1) %> m
+            <% swell_data = @weather_data["swell"][index] %>
+            <% if swell_data.present? && swell_data[0].present? && swell_data[1].present? && swell_data[2].present? %>
+              <%= swell_data[0].round %>s
+              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{swell_data[1]}deg); width: 24px" %>
+              <%= swell_data[2].round(1) %> m
             <% else %>
               N/A
             <% end %>
           </div>
           <div class="card info">
             <div class="info-title">Wind</div>
-            <% wind_direction = @weather_data["wind"][index][0] %>
-            <% wind_speed = @weather_data["wind"][index][1] %>
-            <% if wind_direction.present? && wind_speed.present? %>
-              <%= image_tag "north-#{wind_speed < 2.5 ? "green" : (wind_speed > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{wind_direction}deg); width: 24px" %>
+            <% wind_data = @weather_data["wind"][index] %>
+            <% if wind_data.present? && wind_data[0].present? && wind_data[1].present? %>
+              <%= image_tag "north-#{wind_data[1] < 2.5 ? "green" : (wind_data[1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{wind_data[0]}deg); width: 24px" %>
             <% else %>
               <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
             <% end %>
           </div>
           <div class="card info">
             <div class="info-title">Current</div>
-            <% current_direction = @weather_data["current"][index][0] %>
-            <% current_speed = @weather_data["current"][index][1] %>
-            <% if current_direction.present? && current_speed.present? %>
-              <%= image_tag "north-#{current_speed < 0.05 ? "green" : (current_speed > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{current_direction}deg); width: 24px" %>
+            <% current_data = @weather_data["current"][index] %>
+            <% if current_data.present? && current_data[0].present? && current_data[1].present? %>
+              <%= image_tag "north-#{current_data[1] < 0.05 ? "green" : (current_data[1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{current_data[0]}deg); width: 24px" %>
             <% else %>
               <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
             <% end %>
