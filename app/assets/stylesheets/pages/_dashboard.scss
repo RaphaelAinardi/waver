@@ -131,6 +131,10 @@
       transform: rotateY(180deg);
       background-color: $background;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
 
       .board-details {
         font-size: 14px;

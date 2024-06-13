@@ -7,7 +7,10 @@
 
 <div class="container" data-controller="filter">
   <%= render "filters" %>
-  <div class="spot-cards" data-filter-target="cards">
-    <%= render "spot_cards", spots: @spots %>
+  <div class="misty-effect-container">
+    <div class="spot-cards" data-filter-target="cards">
+      <%= render "spot_cards", spots: @spots %>
+    </div>
+    <div class="misty-effect"></div>
   </div>
 </div>
