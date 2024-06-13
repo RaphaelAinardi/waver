@@ -19,35 +19,55 @@
 <div data-controller="weather-infos-scroll">
   <div class="card hours" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
     <% @hours.each do |value| %>
-      <% if value % 2 === 0 %>
+      <% if value % 2 == 0 %>
         <div class="info"><%= value %>h</div>
       <% end %>
     <% end %>
   </div>
   <div class="weather-infos" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
     <% @hours.each_with_index do |value, index| %>
-      <% if value % 2 === 0 %>
+      <% if value % 2 == 0 %>
         <div class="card infos">
           <div class="info cloud">
-            <%= image_tag "#{@weather_data["cloud_cover"][index] > 66 ? "cloud.svg" : (@weather_data["cloud_cover"][index] < 33 ? "sun.svg" : "cloud-sun.svg")}", style: "width: 48px" %>
+            <% if @weather_data["cloud_cover"][index].present? %>
+              <%= image_tag "#{@weather_data["cloud_cover"][index] > 66 ? "cloud.svg" : (@weather_data["cloud_cover"][index] < 33 ? "sun.svg" : "cloud-sun.svg")}", style: "width: 48px" %>
+            <% else %>
+              <%= image_tag "default-cloud.svg", style: "width: 48px" %>
+            <% end %>
           </div>
           <div class="card info">
             <div class="info-title">Water</div>
-            <%= @weather_data["water_temperature"][index].round %>°C
+            <% if @weather_data["water_temperature"][index].present? %>
+              <%= @weather_data["water_temperature"][index].round %>°C
+            <% else %>
+              N/A
+            <% end %>
           </div>
           <div class="card info swell d-flex flex-column gap-3 align-items-center">
             <div class="info-title">Swell</div>
-            <%= @weather_data["swell"][index][0].round %>s
-            <%= image_tag "north-arrow.svg", style: "transform: rotate(#{@weather_data["swell"][index][1]}deg); width: 24px" %>
-            <%= @weather_data["swell"][index][2].round(1) %> m
+            <% if @weather_data["swell"][index].present? %>
+              <%= @weather_data["swell"][index][0].round %>s
+              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{@weather_data["swell"][index][1]}deg); width: 24px" %>
+              <%= @weather_data["swell"][index][2].round(1) %> m
+            <% else %>
+              N/A
+            <% end %>
           </div>
           <div class="card info">
             <div class="info-title">Wind</div>
-            <%= image_tag "north-#{@weather_data["wind"][index][1] < 2.5 ? "green" : (@weather_data["wind"][index][1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["wind"][index][0]}deg); width: 24px" %>
+            <% if @weather_data["wind"][index].present? %>
+              <%= image_tag "north-#{@weather_data["wind"][index][1] < 2.5 ? "green" : (@weather_data["wind"][index][1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["wind"][index][0]}deg); width: 24px" %>
+            <% else %>
+              N/A
+            <% end %>
           </div>
           <div class="card info">
             <div class="info-title">Current</div>
-            <%= image_tag "north-#{@weather_data["current"][index][1] < 0.05 ? "green" : (@weather_data["current"][index][1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["current"][index][0]}deg); width: 24px" %>
+            <% if @weather_data["current"][index].present? %>
+              <%= image_tag "north-#{@weather_data["current"][index][1] < 0.05 ? "green" : (@weather_data["current"][index][1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{@weather_data["current"][index][0]}deg); width: 24px" %>
+            <% else %>
+              N/A
+            <% end %>
           </div>
         </div>
       <% end %>
