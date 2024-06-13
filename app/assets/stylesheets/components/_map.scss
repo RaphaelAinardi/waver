@@ -4,8 +4,9 @@
 }
 
 .mapboxgl-ctrl-bottom-right,
-.mapboxgl-ctrl-bottom-left {
-  display: none;
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-geocoder--powered-by {
+  display: none !important;
 }
 
 .mapboxgl-popup-content {
@@ -47,16 +48,16 @@
 }
 .mapboxgl-ctrl-geocoder {
   font-size: 18px;
-  line-height: 24px;
   position: fixed;
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
   background-color: $background;
   width: 90%;
-  min-width: 240px;
-  z-index: 1;
   border-radius: 50px;
-  transition: width 0.25s, min-width 0.25s;
   opacity: 0.8;
+
+  &--input:focus {
+    outline: none;
+  }
 }
