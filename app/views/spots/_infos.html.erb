@@ -76,17 +76,19 @@
                 <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
               <% end %>
             </div>
-            <div class="card info board">
-              <% if swell_data[2].round(1) > 1.8 %>
-                <%= image_tag "gun.svg", style: "transform: rotate(90deg); width: 35px" %>
-              <% elsif swell_data[2].round(1) < 0.5 %>
-                <%= image_tag "longboard.svg", style: "transform: rotate(90deg); width: 35px" %>
-              <% elsif @spot.wave_type === "Beach break" %>
-                <%= image_tag "fish.svg", style: "transform: rotate(90deg); width: 35px" %>
-              <% elsif @spot.wave_type === "Reef break" %>
-                <%= image_tag "shortboard.svg", style: "transform: rotate(90deg); width: 35px" %>
-              <% end %>
-            </div>
+            <% if swell_data.present? %>
+              <div class="card info board">
+                <% if swell_data[2].round(1) > 1.8 %>
+                  <%= image_tag "gun.svg", style: "transform: rotate(90deg); width: 35px" %>
+                <% elsif swell_data[2].round(1) < 0.5 %>
+                  <%= image_tag "longboard.svg", style: "transform: rotate(90deg); width: 35px" %>
+                <% elsif @spot.wave_type === "Beach break" %>
+                  <%= image_tag "fish.svg", style: "transform: rotate(90deg); width: 35px" %>
+                <% elsif @spot.wave_type === "Reef break" %>
+                  <%= image_tag "shortboard.svg", style: "transform: rotate(90deg); width: 35px" %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       <% end %>
