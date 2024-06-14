@@ -17,81 +17,90 @@
   </div>
   <i class="bi bi-camera-reels-fill"></i>
 </div>
-
-<div data-controller="weather-infos-scroll">
-  <div class="card hours" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
-    <% @hours.each do |value| %>
-      <% if value % 2 == 0 %>
-        <div class="info"><%= value %>h</div>
+<% if @weather_data.present? %>
+  <div data-controller="weather-infos-scroll">
+    <div class="card hours" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
+      <% @hours.each do |value| %>
+        <% if value % 2 == 0 %>
+          <div class="info"><%= value %>h</div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="weather-infos" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
-    <% @hours.each_with_index do |value, index| %>
-      <% if value % 2 == 0 %>
-        <div class="card infos">
-          <div class="info cloud">
-            <% cloud_cover = @weather_data["cloud_cover"][index] %>
-            <% if cloud_cover.present? %>
-              <%= image_tag(cloud_cover > 66 ? "cloud.svg" : (cloud_cover < 33 ? "sun.svg" : "cloud-sun.svg"), style: "width: 48px") %>
-            <% else %>
-              <%= image_tag(asset_path("default-image.svg"), style: "width: 48px") %>
-            <% end %>
+    </div>
+    <div class="weather-infos" data-action="scroll->weather-infos-scroll#scroll" data-weather-infos-scroll-target="details">
+      <% @hours.each_with_index do |value, index| %>
+        <% if value % 2 == 0 %>
+          <div class="card infos">
+            <div class="info cloud">
+              <% cloud_cover = @weather_data["cloud_cover"][index] %>
+              <% if cloud_cover.present? %>
+                <%= image_tag(cloud_cover > 66 ? "cloud.svg" : (cloud_cover < 33 ? "sun.svg" : "cloud-sun.svg"), style: "width: 48px") %>
+              <% else %>
+                <%= image_tag(asset_path("default-image.svg"), style: "width: 48px") %>
+              <% end %>
+            </div>
+            <div class="card info">
+              <div class="info-title">Water</div>
+              <% water_temperature = @weather_data["water_temperature"][index] %>
+              <% if water_temperature.present? %>
+                <%= water_temperature.round %>°C
+              <% else %>
+                N/A
+              <% end %>
+            </div>
+            <div class="card info swell d-flex flex-column gap-3 align-items-center">
+              <div class="info-title">Swell</div>
+              <% swell_data = @weather_data["swell"][index] %>
+              <% if swell_data.present? && swell_data[0].present? && swell_data[1].present? && swell_data[2].present? %>
+                <%= swell_data[0].round %>s
+                <%= image_tag "north-arrow.svg", style: "transform: rotate(#{swell_data[1]}deg); width: 24px" %>
+                <%= swell_data[2].round(1) %> m
+              <% else %>
+                N/A
+              <% end %>
+            </div>
+            <div class="card info">
+              <div class="info-title">Wind</div>
+              <% wind_data = @weather_data["wind"][index] %>
+              <% if wind_data.present? && wind_data[0].present? && wind_data[1].present? %>
+                <%= image_tag "north-#{wind_data[1] < 2.5 ? "green" : (wind_data[1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{wind_data[0]}deg); width: 24px" %>
+              <% else %>
+                <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
+              <% end %>
+            </div>
+            <div class="card info">
+              <div class="info-title">Current</div>
+              <% current_data = @weather_data["current"][index] %>
+              <% if current_data.present? && current_data[0].present? && current_data[1].present? %>
+                <%= image_tag "north-#{current_data[1] < 0.05 ? "green" : (current_data[1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{current_data[0]}deg); width: 24px" %>
+              <% else %>
+                <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
+              <% end %>
+            </div>
+            <div class="card info board">
+              <% if swell_data[2].round(1) > 1.8 %>
+                <%= image_tag "gun.svg", style: "transform: rotate(90deg); width: 35px" %>
+              <% elsif swell_data[2].round(1) < 0.5 %>
+                <%= image_tag "longboard.svg", style: "transform: rotate(90deg); width: 35px" %>
+              <% elsif @spot.wave_type === "Beach break" %>
+                <%= image_tag "fish.svg", style: "transform: rotate(90deg); width: 35px" %>
+              <% elsif @spot.wave_type === "Reef break" %>
+                <%= image_tag "shortboard.svg", style: "transform: rotate(90deg); width: 35px" %>
+              <% end %>
+            </div>
           </div>
-          <div class="card info">
-            <div class="info-title">Water</div>
-            <% water_temperature = @weather_data["water_temperature"][index] %>
-            <% if water_temperature.present? %>
-              <%= water_temperature.round %>°C
-            <% else %>
-              N/A
-            <% end %>
-          </div>
-          <div class="card info swell d-flex flex-column gap-3 align-items-center">
-            <div class="info-title">Swell</div>
-            <% swell_data = @weather_data["swell"][index] %>
-            <% if swell_data.present? && swell_data[0].present? && swell_data[1].present? && swell_data[2].present? %>
-              <%= swell_data[0].round %>s
-              <%= image_tag "north-arrow.svg", style: "transform: rotate(#{swell_data[1]}deg); width: 24px" %>
-              <%= swell_data[2].round(1) %> m
-            <% else %>
-              N/A
-            <% end %>
-          </div>
-          <div class="card info">
-            <div class="info-title">Wind</div>
-            <% wind_data = @weather_data["wind"][index] %>
-            <% if wind_data.present? && wind_data[0].present? && wind_data[1].present? %>
-              <%= image_tag "north-#{wind_data[1] < 2.5 ? "green" : (wind_data[1] > 5 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{wind_data[0]}deg); width: 24px" %>
-            <% else %>
-              <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
-            <% end %>
-          </div>
-          <div class="card info">
-            <div class="info-title">Current</div>
-            <% current_data = @weather_data["current"][index] %>
-            <% if current_data.present? && current_data[0].present? && current_data[1].present? %>
-              <%= image_tag "north-#{current_data[1] < 0.05 ? "green" : (current_data[1] > 0.15 ? "red" : "orange")}-arrow.svg", style: "transform: rotate(#{current_data[0]}deg); width: 24px" %>
-            <% else %>
-              <%= image_tag "north-orange-arrow.svg", style: "width: 24px" %>
-            <% end %>
-          </div>
-          <div class="card info board">
-            <% if swell_data[2].round(1) > 1.8 %>
-              <%= image_tag "gun.svg", style: "transform: rotate(90deg); width: 35px" %>
-            <% elsif swell_data[2].round(1) < 0.5 %>
-              <%= image_tag "longboard.svg", style: "transform: rotate(90deg); width: 35px" %>
-            <% elsif @spot.wave_type === "Beach break" %>
-              <%= image_tag "fish.svg", style: "transform: rotate(90deg); width: 35px" %>
-            <% elsif @spot.wave_type === "Reef break" %>
-              <%= image_tag "shortboard.svg", style: "transform: rotate(90deg); width: 35px" %>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="d-flex justify-content-center align-items-center flex-column"
+        style="height: 80vh">
+    <div class="mb-4">
+      <p>No data available</p>
+    </div>
+    <%= link_to "Reload", spot_path(@spot), class: 'button' %>
+  </div>
+<% end %>
 
 <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_225028) do
   create_table "boards", force: :cascade do |t|
     t.string "brand"
     t.string "shape"
-    t.float "lenght"
+    t.float "length"
     t.float "width"
     t.float "thickness"
     t.integer "user_id"
@@ -142,7 +142,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_225028) do
     t.float "average_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "livecam_url"
   end
 
   create_table "users", force: :cascade do |t|
@@ -157,7 +156,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_225028) do
     t.string "last_name"
     t.date "birthdate"
     t.integer "level"
-    t.string "board"
+    t.string "boards"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
