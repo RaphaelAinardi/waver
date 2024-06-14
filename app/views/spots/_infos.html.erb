@@ -1,5 +1,7 @@
 <div class="card">
-  <div class="image-container">
+  <div class="image-container"
+         data-bs-toggle="modal"
+         data-bs-target="#videoModal">
     <%= cl_image_tag(@spot.photos.attached? ? @spot.photos.first.key : "default_photo", crop: :fill, class: 'img-fluid') %>
   </div>
   <div class="card-body">
@@ -13,7 +15,7 @@
       <strong>Difficulty:</strong> <%= @spot.difficulty %>
     </div>
   </div>
-  <i class="bi bi-camera-reels-fill" data-bs-toggle="modal" data-bs-target="#videoModal"></i>
+  <i class="bi bi-camera-reels-fill"></i>
 </div>
 
 <div data-controller="weather-infos-scroll">
