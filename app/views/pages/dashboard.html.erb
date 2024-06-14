@@ -87,7 +87,7 @@
       <p>You don't have any experiences yet</p>
     <% else %>
       <div class="experiences">
-        <% current_user.experiences.each do |experience| %>
+        <% current_user.experiences.reverse.each do |experience| %>
           <%= render "shared/experience", experience: experience %>
         <% end %>
       </div>

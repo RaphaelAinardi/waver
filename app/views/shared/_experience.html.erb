@@ -9,7 +9,7 @@
     </div>
     <% unless (params[:action] === 'show' && params[:controller] === 'users') || current_page?(dashboard_path) || experience.user === current_user %>
       <object>
-        <i class="fa-solid <%= current_user.follows.find_by( second_user: @user ) ? 'fa-user-minus' : 'fa-user-plus' %> follow"
+        <i class="fa-solid <%= current_user.follows.find_by( second_user: experience.user ) ? 'fa-user-minus' : 'fa-user-plus' %> follow"
            data-controller="follow"
            data-action="click->follow#quickToggle"
            data-follow-path-value="<%= set_follow_user_path(experience.user) %>">
