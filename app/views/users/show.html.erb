@@ -3,7 +3,7 @@
 <% end %>
 <div class="container">
   <div class="profile-page-details">
-    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "profile-buttons" do %>
+    <%= link_to chat_path(current_user.chatroom(@user)), class: "profile-buttons" do %>
       <i class="fa-solid fa-comments"></i>
     <% end %>
     <% if @user.photo.attached? %>
