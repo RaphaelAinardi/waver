@@ -1,7 +1,7 @@
 <div class="experience-card">
   <%= link_to (experience.user === current_user ? dashboard_path : user_path(experience.user)), class: "text-decoration-none experience-header" do %>
-    <% if current_user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, class: "avatar", crop: :fill %>
+    <% if experience.user.photo.attached? %>
+      <%= cl_image_tag experience.user.photo.key, class: "avatar", crop: :fill %>
     <% else %>
       <%= image_tag "default_pfp.jpg", class: "avatar", crop: :fill %>
     <% end %>

@@ -10,7 +10,7 @@ export default class extends Controller {
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
     this.subscription = createConsumer().subscriptions.create(
       { channel: "ChatChannel", id: this.chatIdValue },
-      { received: (data) => this.#insertMessageAndScrollDown(data) },
+      { received: (data) => this.#insertMessageAndScrollDown(data) }
     );
   }
 
@@ -24,11 +24,29 @@ export default class extends Controller {
   }
 
   #insertMessageAndScrollDown(data) {
-    this.messagesTarget.insertAdjacentHTML("beforeend", data.message);
+    const currentUserIsSender = this.currentUserIdValue === data.sender_id;
+    const messageElement = this.#buildMessageElement(
+      currentUserIsSender,
+      data.message
+    );
+
+    this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
     this.messagesTarget.scrollTo({
       left: 0,
       top: this.messagesTarget.scrollHeight,
       behavior: "smooth",
     });
+  }
+
+  #buildMessageElement(currentUserIsSender, message) {
+    return `
+      <div class="message ${this.#justifyClass(currentUserIsSender)}">
+        ${message}
+      </div>
+    `;
+  }
+
+  #justifyClass(currentUserIsSender) {
+    return currentUserIsSender ? "main-user" : "";
   }
 }

@@ -8,7 +8,9 @@
      data-chat-subscription-current-user-id-value="<%= current_user.id %>">
   <div class="messages" data-chat-subscription-target="messages">
     <% @chat.messages.each do |message| %>
-      <%= render "messages/message", message: %>
+      <div class="message <%= "main-user" if message.user === current_user %>">
+        <%= render "messages/message", message: %>
+      </div>
     <% end %>
   </div>
   <%= simple_form_for [@chat, @message], html: { data: { action: "turbo:submit-end->chat-subscription#resetForm" }, class: "chat-input" } do |f| %>

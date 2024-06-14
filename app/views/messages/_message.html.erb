@@ -1,8 +1,6 @@
-<div class="message <%= "main-user" if message.user === current_user %>">
-  <div class="message-container">
-    <div class="message-info">
-      <%= message.created_at.strftime("%a %b %e at %l:%M %p") %>
-    </div>
-    <div class="message-content"><%= message.content %></div>
+<div class="message-container">
+  <div class="message-info">
+    <%= message.created_at.strftime("%a %b %e at %l:%M %p") %>
   </div>
+  <div class="message-content"><%= message.content %></div>
 </div>
