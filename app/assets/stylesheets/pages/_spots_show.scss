@@ -47,10 +47,10 @@
   .infos {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     padding: 12px;
     gap: 12px;
-    aspect-ratio: 2/3;
+    aspect-ratio: 2/4;
 
     .swell {
       grid-row: span 2;
@@ -69,6 +69,10 @@
 
       &.cloud {
         background-color: transparent;
+      }
+
+      &.board {
+        grid-column: span 2;
       }
     }
   }

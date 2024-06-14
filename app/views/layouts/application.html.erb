@@ -20,7 +20,7 @@
 
   <body>
     <div class="wrapper" data-controller="experience">
-      <%= render "shared/header" unless current_page?(map_path) || current_page?(dashboard_path) %>
+      <%= render "shared/header" unless current_page?(map_path) || current_page?(dashboard_path) || (params[:controller] == 'users' && params[:action] == 'show') %>
 
       <%= render "shared/flashes" %>
       <div class="background"></div>

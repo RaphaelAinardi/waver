@@ -14,13 +14,12 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content,
       },
     });
-    if (
-      document.querySelector(".fa-solid").classList.contains("fa-user-plus")
-    ) {
+    if (document.getElementById("icon").classList.contains("fa-user-plus")) {
       this.element.innerHTML =
-        '<i class="fa-solid fa-user-minus"></i> Unfollow';
+        '<i class="fa-solid fa-user-minus" id="icon"></i> Unfollow';
     } else {
-      this.element.innerHTML = '<i class="fa-solid fa-user-plus"></i> Follow';
+      this.element.innerHTML =
+        '<i class="fa-solid fa-user-plus" id="icon"></i> Follow';
     }
   }
 

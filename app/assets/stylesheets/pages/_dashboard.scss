@@ -128,6 +128,10 @@
     }
 
     .card-board-back {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
       transform: rotateY(180deg);
       background-color: $background;
       padding: 20px;

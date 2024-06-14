@@ -4,7 +4,7 @@
 <div class="container">
   <div class="experiences">
     <% current_user.follows.each do |follow| %>
-      <% follow.second_user.experiences.each do |experience| %>
+      <% follow.second_user.experiences.reverse.each do |experience| %>
         <%= render "shared/experience", experience: %>
       <% end %>
     <% end %>
