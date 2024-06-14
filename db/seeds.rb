@@ -1,18 +1,37 @@
 require 'cloudinary'
 require 'open-uri'
+User.destroy_all
 
-User.create([
-  { email: 'jean.dolet@example.com', password: 'password123', first_name: 'Jean', last_name: 'Dolet', birthdate: '1990-01-01', level: 1 },
-  { email: 'jeanne.smet@example.com', password: 'password123', first_name: 'Jeanne', last_name: 'Smet', birthdate: '1985-02-14', level: 2 },
-  { email: 'alice.saunier@example.com', password: 'password123', first_name: 'Alice', last_name: 'Saunier', birthdate: '1992-03-22', level: 3 },
-  { email: 'bernard.broule@example.com', password: 'password123', first_name: 'Bernard', last_name: 'Broule', birthdate: '1988-04-10', level: 1 },
-  { email: 'charlie.moret@example.com', password: 'password123', first_name: 'Charlie', last_name: 'Moret', birthdate: '1993-05-30', level: 2 },
-  { email: 'diana.gouetta@example.com', password: 'password123', first_name: 'Diana', last_name: 'Gouetta', birthdate: '1991-06-25', level: 3 },
-  { email: 'hugo.hersant@example.com', password: 'password123', first_name: 'Hugo', last_name: 'Hersant', birthdate: '1987-07-15', level: 1 },
-  { email: 'fiona.sala@example.com', password: 'password123', first_name: 'Fiona', last_name: 'Sala', birthdate: '1989-08-20', level: 2 },
-  { email: 'george.claron@example.com', password: 'password123', first_name: 'George', last_name: 'Claron', birthdate: '1994-09-12', level: 3 },
-  { email: 'anna.retali@example.com', password: 'password123', first_name: 'Anna', last_name: 'Retali', birthdate: '1986-10-05', level: 1 }
+User.create!([
+  { email: 'fiona.pasteur@example.com', password: 'password123', first_name: 'Fiona', last_name: 'Pasteur', birthdate: '1986-10-05', level: 1 },
+  { email: 'lisette.auguste@example.com', password: 'password123', first_name: 'Lisette', last_name: 'Auguste', birthdate: '1990-01-01', level: 1 },
+  { email: 'anna.leger@example.com', password: 'password123', first_name: 'Anna', last_name: 'Leger', birthdate: '1985-02-14', level: 2 },
+  { email: 'chloe.jacquier@example.com', password: 'password123', first_name: 'Chloé', last_name: 'Jacquier', birthdate: '1992-03-22', level: 3 },
+  { email: 'manon.vidal@example.com', password: 'password123', first_name: 'Manon', last_name: 'Vidal', birthdate: '1988-04-10', level: 1 },
+  { email: 'margot.briere@example.com', password: 'password123', first_name: 'Margot', last_name: 'Brière', birthdate: '1993-05-30', level: 2 },
+  { email: 'emilie.suchet@example.com', password: 'password123', first_name: 'Emilie', last_name: 'Suchet', birthdate: '1991-06-25', level: 3 },
+  { email: 'eve.chapuis@example.com', password: 'password123', first_name: 'Eve', last_name: 'Chapuis', birthdate: '1987-07-15', level: 1 },
+  { email: 'elisabeth.beauchamp@example.com', password: 'password123', first_name: 'Elisabeth', last_name: 'Beauchamp', birthdate: '1989-08-20', level: 2 },
+  { email: 'sylvie.blanc@example.com', password: 'password123', first_name: 'Sylvie', last_name: 'Blanc', birthdate: '1989-08-20', level: 2 },
+  { email: 'josephine.plantin@example.com', password: 'password123', first_name: 'Joséphine', last_name: 'Plantin', birthdate: '1978-08-20', level: 2 },
+  { email: 'benjamin.martin@example.com', password: 'password123', first_name: 'Benjamin', last_name: 'Martin', birthdate: '1990-01-01', level: 1 },
+  { email: 'nicolas.buisson@example.com', password: 'password123', first_name: 'Nicolas', last_name: 'Buisson', birthdate: '1985-02-14', level: 2 },
+  { email: 'olivier.derocles@example.com', password: 'password123', first_name: 'Olivier', last_name: 'Derocles', birthdate: '1992-03-22', level: 3 },
+  { email: 'lucas.jacquard@example.com', password: 'password123', first_name: 'Lucas', last_name: 'Jacquard', birthdate: '1988-04-10', level: 1 },
+  { email: 'matthieu.bardot@example.com', password: 'password123', first_name: 'Matthieu', last_name: 'Bardot', birthdate: '1993-05-30', level: 2 },
+  { email: 'daniel.dumont@example.com', password: 'password123', first_name: 'Daniel', last_name: 'Dumont', birthdate: '1991-06-25', level: 3 },
+  { email: 'pierre.cartier@example.com', password: 'password123', first_name: 'Pierre', last_name: 'Cartier', birthdate: '1987-07-15', level: 1 },
+  { email: 'paul.dupuis@example.com', password: 'password123', first_name: 'Paul', last_name: 'Dupuis', birthdate: '1989-08-20', level: 2 },
+  { email: 'jacques.chevalier@example.com', password: 'password123', first_name: 'Jacques', last_name: 'Chevalier', birthdate: '1994-09-12', level: 3 },
 ])
+
+User.find_each.with_index do |user, index|
+  photo_path = Rails.root.join('app', 'assets', 'images', "photos", "#{"%02d" % (index + 1)}.png")
+  user.photo.attach(io: File.open(photo_path), filename: "#{user.first_name} photo")
+  user.save!
+  puts "#{user.first_name} has been seeded ! 🥳🥳"
+end
+
 
 Spot.destroy_all
 
