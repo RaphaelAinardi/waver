@@ -80,3 +80,24 @@
   pointer-events: none;
   z-index: 2;
 }
+
+.misty-effect-container {
+  position: relative;
+
+  .misty-effect {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh; /* Adjust this value according to the desired height of the misty effect */
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.8) 30%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 10; /* Ensure it is above the "spot cards" */
+  }
+}
